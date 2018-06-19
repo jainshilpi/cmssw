@@ -1,0 +1,418 @@
+DEBUG 2017-08-16 01:41:49,230: 	 Executing command: 'submit'
+DEBUG 2017-08-16 01:41:49,236: 	 Found CRAB cache file /afs/cern.ch/user/s/shilpi/.crab3
+DEBUG 2017-08-16 01:41:49,256: 	 Checking credentials
+DEBUG 2017-08-16 01:41:49,256: 	 Proxy file /tmp/x509up_u32031 not found
+DEBUG 2017-08-16 01:41:49,256: 	 Creating new proxy for 24:00 hours with VO group '' and VO role 'NULL'.
+DEBUG 2017-08-16 01:46:22,283: 	 Executing command: 'submit'
+DEBUG 2017-08-16 01:46:22,287: 	 Found CRAB cache file /afs/cern.ch/user/s/shilpi/.crab3
+DEBUG 2017-08-16 01:46:22,293: 	 Checking credentials
+DEBUG 2017-08-16 01:46:22,293: 	 Proxy file /tmp/x509up_u32031 not found
+DEBUG 2017-08-16 01:46:22,293: 	 Creating new proxy for 24:00 hours with VO group '' and VO role 'NULL'.
+DEBUG 2017-08-16 01:46:31,114: 	 Executing : 
+ command : voms-proxy-init -voms cms:/cms -valid 24:00 -rfc
+ output : None
+ error: None
+ retcode : 0
+DEBUG 2017-08-16 01:46:31,918: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -timeleft
+ output : 86398
+
+ error: 
+ retcode : 0
+DEBUG 2017-08-16 01:46:32,423: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -actimeleft
+ output : 86397
+
+ error: 
+ retcode : 0
+DEBUG 2017-08-16 01:46:32,927: 	 Executing : 
+ command : env X509_USER_PROXY=/tmp/x509up_u32031 voms-proxy-info -fqan
+ output : /cms/Role=NULL/Capability=NULL
+
+ error: 
+ retcode : 0
+DEBUG 2017-08-16 01:46:32,928: 	 Proxy created.
+DEBUG 2017-08-16 01:46:32,933: 	 Executing command: 'submit'
+DEBUG 2017-08-16 01:46:32,933: 	 Found CRAB cache file /afs/cern.ch/user/s/shilpi/.crab3
+DEBUG 2017-08-16 01:46:32,946: 	 Checking credentials
+DEBUG 2017-08-16 01:46:32,948: 	 Found proxy file /tmp/x509up_u32031
+DEBUG 2017-08-16 01:46:32,948: 	 Getting proxy life time left
+DEBUG 2017-08-16 01:46:33,453: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -timeleft
+ output : 86396
+
+ error: 
+ retcode : 0
+DEBUG 2017-08-16 01:46:33,958: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -actimeleft
+ output : 86396
+
+ error: 
+ retcode : 0
+DEBUG 2017-08-16 01:46:33,958: 	 Proxy valid for 23:59:56 hours
+DEBUG 2017-08-16 01:46:33,961: 	 Executing command: 'submit'
+DEBUG 2017-08-16 01:46:33,961: 	 Found CRAB cache file /afs/cern.ch/user/s/shilpi/.crab3
+DEBUG 2017-08-16 01:46:33,970: 	 Checking credentials
+DEBUG 2017-08-16 01:46:33,970: 	 Found proxy file /tmp/x509up_u32031
+DEBUG 2017-08-16 01:46:33,970: 	 Getting proxy life time left
+DEBUG 2017-08-16 01:46:34,575: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -timeleft
+ output : 86395
+
+ error: 
+ retcode : 0
+DEBUG 2017-08-16 01:46:35,080: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -actimeleft
+ output : 86395
+
+ error: 
+ retcode : 0
+DEBUG 2017-08-16 01:46:35,080: 	 Proxy valid for 23:59:55 hours
+DEBUG 2017-08-16 01:46:35,084: 	 Executing command: 'submit'
+DEBUG 2017-08-16 01:46:35,084: 	 Found CRAB cache file /afs/cern.ch/user/s/shilpi/.crab3
+DEBUG 2017-08-16 01:46:35,098: 	 Checking credentials
+DEBUG 2017-08-16 01:46:35,098: 	 Found proxy file /tmp/x509up_u32031
+DEBUG 2017-08-16 01:46:35,098: 	 Getting proxy life time left
+DEBUG 2017-08-16 01:46:35,705: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -timeleft
+ output : 86394
+
+ error: 
+ retcode : 0
+DEBUG 2017-08-16 01:46:36,210: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -actimeleft
+ output : 86393
+
+ error: 
+ retcode : 0
+DEBUG 2017-08-16 01:46:36,210: 	 Proxy valid for 23:59:54 hours
+DEBUG 2017-08-16 01:46:36,213: 	 Executing command: 'submit'
+DEBUG 2017-08-16 01:46:36,213: 	 Found CRAB cache file /afs/cern.ch/user/s/shilpi/.crab3
+DEBUG 2017-08-16 01:46:36,224: 	 Checking credentials
+DEBUG 2017-08-16 01:46:36,224: 	 Found proxy file /tmp/x509up_u32031
+DEBUG 2017-08-16 01:46:36,224: 	 Getting proxy life time left
+DEBUG 2017-08-16 01:46:36,831: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -timeleft
+ output : 86393
+
+ error: 
+ retcode : 0
+DEBUG 2017-08-16 01:46:37,336: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -actimeleft
+ output : 86392
+
+ error: 
+ retcode : 0
+DEBUG 2017-08-16 01:46:37,336: 	 Proxy valid for 23:59:53 hours
+DEBUG 2017-08-16 01:46:37,339: 	 Executing command: 'submit'
+DEBUG 2017-08-16 01:46:37,339: 	 Found CRAB cache file /afs/cern.ch/user/s/shilpi/.crab3
+DEBUG 2017-08-16 01:46:37,348: 	 Checking credentials
+DEBUG 2017-08-16 01:46:37,349: 	 Found proxy file /tmp/x509up_u32031
+DEBUG 2017-08-16 01:46:37,349: 	 Getting proxy life time left
+DEBUG 2017-08-16 01:46:37,852: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -timeleft
+ output : 86392
+
+ error: 
+ retcode : 0
+DEBUG 2017-08-16 01:46:38,356: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -actimeleft
+ output : 86391
+
+ error: 
+ retcode : 0
+DEBUG 2017-08-16 01:46:38,357: 	 Proxy valid for 23:59:52 hours
+DEBUG 2017-08-16 01:46:38,360: 	 Executing command: 'submit'
+DEBUG 2017-08-16 01:46:38,360: 	 Found CRAB cache file /afs/cern.ch/user/s/shilpi/.crab3
+DEBUG 2017-08-16 01:46:38,367: 	 Checking credentials
+DEBUG 2017-08-16 01:46:38,367: 	 Found proxy file /tmp/x509up_u32031
+DEBUG 2017-08-16 01:46:38,367: 	 Getting proxy life time left
+DEBUG 2017-08-16 01:46:38,874: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -timeleft
+ output : 86391
+
+ error: 
+ retcode : 0
+DEBUG 2017-08-16 01:46:39,379: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -actimeleft
+ output : 86390
+
+ error: 
+ retcode : 0
+DEBUG 2017-08-16 01:46:39,379: 	 Proxy valid for 23:59:51 hours
+DEBUG 2017-08-16 01:46:39,382: 	 Executing command: 'submit'
+DEBUG 2017-08-16 01:46:39,382: 	 Found CRAB cache file /afs/cern.ch/user/s/shilpi/.crab3
+DEBUG 2017-08-16 01:46:39,395: 	 Checking credentials
+DEBUG 2017-08-16 01:46:39,395: 	 Found proxy file /tmp/x509up_u32031
+DEBUG 2017-08-16 01:46:39,395: 	 Getting proxy life time left
+DEBUG 2017-08-16 01:46:39,899: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -timeleft
+ output : 86390
+
+ error: 
+ retcode : 0
+DEBUG 2017-08-16 01:46:40,505: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -actimeleft
+ output : 86389
+
+ error: 
+ retcode : 0
+DEBUG 2017-08-16 01:46:40,505: 	 Proxy valid for 23:59:50 hours
+DEBUG 2017-08-16 01:46:40,509: 	 Executing command: 'submit'
+DEBUG 2017-08-16 01:46:40,509: 	 Found CRAB cache file /afs/cern.ch/user/s/shilpi/.crab3
+DEBUG 2017-08-16 01:46:40,522: 	 Checking credentials
+DEBUG 2017-08-16 01:46:40,523: 	 Found proxy file /tmp/x509up_u32031
+DEBUG 2017-08-16 01:46:40,523: 	 Getting proxy life time left
+DEBUG 2017-08-16 01:46:41,131: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -timeleft
+ output : 86388
+
+ error: 
+ retcode : 0
+DEBUG 2017-08-16 01:46:41,737: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -actimeleft
+ output : 86388
+
+ error: 
+ retcode : 0
+DEBUG 2017-08-16 01:46:41,737: 	 Proxy valid for 23:59:48 hours
+DEBUG 2017-08-16 01:46:41,741: 	 Executing command: 'submit'
+DEBUG 2017-08-16 01:46:41,741: 	 Found CRAB cache file /afs/cern.ch/user/s/shilpi/.crab3
+DEBUG 2017-08-16 01:46:41,756: 	 Checking credentials
+DEBUG 2017-08-16 01:46:41,756: 	 Found proxy file /tmp/x509up_u32031
+DEBUG 2017-08-16 01:46:41,756: 	 Getting proxy life time left
+DEBUG 2017-08-16 01:46:42,360: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -timeleft
+ output : 86387
+
+ error: 
+ retcode : 0
+DEBUG 2017-08-16 01:46:42,863: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -actimeleft
+ output : 86387
+
+ error: 
+ retcode : 0
+DEBUG 2017-08-16 01:46:42,864: 	 Proxy valid for 23:59:47 hours
+DEBUG 2017-08-17 22:44:07,007: 	 Executing command: 'status'
+DEBUG 2017-08-17 22:44:07,008: 	 Found CRAB cache file /afs/cern.ch/user/s/shilpi/.crab3
+DEBUG 2017-08-17 22:44:07,042: 	 Checking credentials
+DEBUG 2017-08-17 22:44:07,044: 	 Proxy file /tmp/x509up_u32031 not found
+DEBUG 2017-08-17 22:44:07,044: 	 Creating new proxy for 24:00 hours with VO group '' and VO role 'NULL'.
+DEBUG 2017-08-17 22:44:14,362: 	 Executing : 
+ command : voms-proxy-init -voms cms:/cms -valid 24:00 -rfc
+ output : None
+ error: None
+ retcode : 0
+DEBUG 2017-08-17 22:44:14,867: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -timeleft
+ output : 86399
+
+ error: 
+ retcode : 0
+DEBUG 2017-08-17 22:44:15,573: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -actimeleft
+ output : 86398
+
+ error: 
+ retcode : 0
+DEBUG 2017-08-17 22:44:16,279: 	 Executing : 
+ command : env X509_USER_PROXY=/tmp/x509up_u32031 voms-proxy-info -fqan
+ output : /cms/Role=NULL/Capability=NULL
+
+ error: 
+ retcode : 0
+DEBUG 2017-08-17 22:44:16,279: 	 Proxy created.
+ERROR 2017-08-17 22:44:16,294: 	 Cannot find .requestcache file in CRAB project directory /afs/cern.ch/work/s/shilpi/work/2015/CMSSW_9_3_X_2017-08-14-1100/src/SimG4CMS/HGCalTestBeam/test/crab_projects_JulyTBv1
+ERROR 2017-08-17 22:44:16,295: 	 Caught exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/bin/crab", line 160, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/bin/crab", line 146, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/lib/python2.7/site-packages/CRABClient/Commands/status.py", line 38, in __init__
+    SubCommand.__init__(self, logger, cmdargs)
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/lib/python2.7/site-packages/CRABClient/Commands/SubCommand.py", line 321, in __init__
+    self.loadLocalCache(proxyOptsSetPlace)
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/lib/python2.7/site-packages/CRABClient/Commands/SubCommand.py", line 450, in loadLocalCache
+    raise ex
+CachefileNotFoundException: Cannot find .requestcache file in CRAB project directory /afs/cern.ch/work/s/shilpi/work/2015/CMSSW_9_3_X_2017-08-14-1100/src/SimG4CMS/HGCalTestBeam/test/crab_projects_JulyTBv1
+DEBUG 2017-08-18 23:21:41,506: 	 Executing command: 'status'
+DEBUG 2017-08-18 23:21:41,506: 	 Found CRAB cache file /afs/cern.ch/user/s/shilpi/.crab3
+DEBUG 2017-08-18 23:21:41,515: 	 Checking credentials
+DEBUG 2017-08-18 23:21:41,515: 	 Found proxy file /tmp/x509up_u32031
+DEBUG 2017-08-18 23:21:41,515: 	 Getting proxy life time left
+DEBUG 2017-08-18 23:21:42,635: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -timeleft
+ output : 86366
+
+ error: 
+ retcode : 0
+DEBUG 2017-08-18 23:21:43,551: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -actimeleft
+ output : 86364
+
+ error: 
+ retcode : 0
+DEBUG 2017-08-18 23:21:43,551: 	 Proxy valid for 23:59:26 hours
+ERROR 2017-08-18 23:21:43,552: 	 Cannot find .requestcache file in CRAB project directory /afs/cern.ch/work/s/shilpi/work/2015/CMSSW_9_3_0_pre3/src/SimG4CMS/HGCalTestBeam/test/crab_projects_JulyTBv1/crab_Ele100GeV
+ERROR 2017-08-18 23:21:43,552: 	 Caught exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/bin/crab", line 160, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/bin/crab", line 146, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/lib/python2.7/site-packages/CRABClient/Commands/status.py", line 38, in __init__
+    SubCommand.__init__(self, logger, cmdargs)
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/lib/python2.7/site-packages/CRABClient/Commands/SubCommand.py", line 321, in __init__
+    self.loadLocalCache(proxyOptsSetPlace)
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/lib/python2.7/site-packages/CRABClient/Commands/SubCommand.py", line 450, in loadLocalCache
+    raise ex
+CachefileNotFoundException: Cannot find .requestcache file in CRAB project directory /afs/cern.ch/work/s/shilpi/work/2015/CMSSW_9_3_0_pre3/src/SimG4CMS/HGCalTestBeam/test/crab_projects_JulyTBv1/crab_Ele100GeV
+DEBUG 2017-08-19 13:18:41,880: 	 Executing command: 'status'
+DEBUG 2017-08-19 13:18:41,882: 	 Found CRAB cache file /afs/cern.ch/user/s/shilpi/.crab3
+DEBUG 2017-08-19 13:18:41,894: 	 Checking credentials
+DEBUG 2017-08-19 13:18:41,897: 	 Proxy file /tmp/x509up_u32031 not found
+DEBUG 2017-08-19 13:18:41,897: 	 Creating new proxy for 24:00 hours with VO group '' and VO role 'NULL'.
+DEBUG 2017-08-19 13:18:48,116: 	 Executing : 
+ command : voms-proxy-init -voms cms:/cms -valid 24:00 -rfc
+ output : None
+ error: None
+ retcode : 1
+DEBUG 2017-08-19 13:18:48,527: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -timeleft
+ output : 
+ error: Proxy not found: /tmp/x509up_u32031 (No such file or directory)
+
+ retcode : 1
+ERROR 2017-08-19 13:18:48,527: 	 Error while checking proxy timeleft for /tmp/x509up_u32031
+DEBUG 2017-08-19 13:18:48,934: 	 Executing : 
+ command : env X509_USER_PROXY=/tmp/x509up_u32031 voms-proxy-info -fqan
+ output : 
+ error: Proxy not found: /tmp/x509up_u32031 (No such file or directory)
+
+ retcode : 1
+ERROR 2017-08-19 13:18:48,934: 	 Problems creating proxy.
+ERROR 2017-08-19 13:18:48,935: 	 Caught exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/bin/crab", line 160, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/bin/crab", line 146, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/lib/python2.7/site-packages/CRABClient/Commands/status.py", line 38, in __init__
+    SubCommand.__init__(self, logger, cmdargs)
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/lib/python2.7/site-packages/CRABClient/Commands/SubCommand.py", line 292, in __init__
+    self.proxyCreated = self.proxy.createNewVomsProxySimple(timeLeftThreshold = 720)
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/lib/python2.7/site-packages/CRABClient/CredentialInteractions.py", line 152, in createNewVomsProxySimple
+    raise ProxyCreationException("Problems creating proxy.")
+ProxyCreationException: Problems creating proxy.
+DEBUG 2017-09-20 00:41:08,154: 	 Executing command: 'submit'
+DEBUG 2017-09-20 00:41:08,159: 	 Found CRAB cache file /afs/cern.ch/user/s/shilpi/.crab3
+DEBUG 2017-09-20 00:41:08,187: 	 Checking credentials
+DEBUG 2017-09-20 00:41:08,187: 	 Proxy file /tmp/x509up_u32031 not found
+DEBUG 2017-09-20 00:41:08,187: 	 Creating new proxy for 24:00 hours with VO group '' and VO role 'NULL'.
+DEBUG 2017-09-20 00:41:15,213: 	 Executing : 
+ command : voms-proxy-init -voms cms:/cms -valid 24:00 -rfc
+ output : None
+ error: None
+ retcode : 0
+DEBUG 2017-09-20 00:41:15,722: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -timeleft
+ output : 86398
+
+ error: 
+ retcode : 0
+DEBUG 2017-09-20 00:41:16,227: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -actimeleft
+ output : 86397
+
+ error: 
+ retcode : 0
+DEBUG 2017-09-20 00:41:16,733: 	 Executing : 
+ command : env X509_USER_PROXY=/tmp/x509up_u32031 voms-proxy-info -fqan
+ output : /cms/Role=NULL/Capability=NULL
+
+ error: 
+ retcode : 0
+DEBUG 2017-09-20 00:41:16,734: 	 Proxy created.
+DEBUG 2017-09-20 00:41:16,734: 	 Will use CRAB PrivateMC plugin (i.e. will run a MC generation job type).
+DEBUG 2017-10-18 13:56:38,523: 	 Executing command: 'status'
+DEBUG 2017-10-18 13:56:38,526: 	 Found CRAB cache file /afs/cern.ch/user/s/shilpi/.crab3
+DEBUG 2017-10-18 13:56:38,559: 	 Checking credentials
+DEBUG 2017-10-18 13:56:38,560: 	 Found proxy file /tmp/x509up_u32031
+DEBUG 2017-10-18 13:56:38,560: 	 Getting proxy life time left
+DEBUG 2017-10-18 13:56:39,270: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -timeleft
+ output : 85647
+
+ error: 
+ retcode : 0
+DEBUG 2017-10-18 13:56:39,876: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -actimeleft
+ output : 85647
+
+ error: 
+ retcode : 0
+DEBUG 2017-10-18 13:56:39,876: 	 Proxy valid for 23:47:27 hours
+ERROR 2017-10-18 13:56:39,878: 	 Cannot find .requestcache file in CRAB project directory /afs/cern.ch/work/s/shilpi/work/2015/CMSSW_9_3_0_pre3/src/SimG4CMS/HGCalTestBeam/test/crab_projects_JulyTBv2_orig_hgcalConsFixed
+ERROR 2017-10-18 13:56:39,879: 	 Caught exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/bin/crab", line 160, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/bin/crab", line 146, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/lib/python2.7/site-packages/CRABClient/Commands/status.py", line 38, in __init__
+    SubCommand.__init__(self, logger, cmdargs)
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/lib/python2.7/site-packages/CRABClient/Commands/SubCommand.py", line 321, in __init__
+    self.loadLocalCache(proxyOptsSetPlace)
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/lib/python2.7/site-packages/CRABClient/Commands/SubCommand.py", line 450, in loadLocalCache
+    raise ex
+CachefileNotFoundException: Cannot find .requestcache file in CRAB project directory /afs/cern.ch/work/s/shilpi/work/2015/CMSSW_9_3_0_pre3/src/SimG4CMS/HGCalTestBeam/test/crab_projects_JulyTBv2_orig_hgcalConsFixed
+DEBUG 2018-06-13 16:11:08,785: 	 Executing command: 'submit'
+DEBUG 2018-06-13 16:11:08,806: 	 Found CRAB cache file /afs/cern.ch/user/s/shilpi/.crab3
+DEBUG 2018-06-13 16:11:08,991: 	 Checking credentials
+DEBUG 2018-06-13 16:11:08,993: 	 Proxy file /tmp/x509up_u32031 not found
+DEBUG 2018-06-13 16:11:08,993: 	 Creating new proxy for 24:00 hours with VO group '' and VO role 'NULL'.
+DEBUG 2018-06-13 16:11:10,825: 	 Executing : 
+ command : voms-proxy-init -voms cms:/cms -valid 24:00 -rfc
+ output : None
+ error: None
+ retcode : 1
+DEBUG 2018-06-13 16:11:11,741: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -timeleft
+ output : 
+ error: Proxy not found: /tmp/x509up_u32031 (No such file or directory)
+
+ retcode : 1
+ERROR 2018-06-13 16:11:11,741: 	 Error while checking proxy timeleft for /tmp/x509up_u32031
+DEBUG 2018-06-13 16:11:12,650: 	 Executing : 
+ command : env X509_USER_PROXY=/tmp/x509up_u32031 voms-proxy-info -fqan
+ output : 
+ error: Proxy not found: /tmp/x509up_u32031 (No such file or directory)
+
+ retcode : 1
+DEBUG 2018-06-13 16:11:12,686: 	 Executing command: 'submit'
+DEBUG 2018-06-13 16:11:12,687: 	 Found CRAB cache file /afs/cern.ch/user/s/shilpi/.crab3
+DEBUG 2018-06-13 16:11:12,699: 	 Checking credentials
+DEBUG 2018-06-13 16:11:12,700: 	 Proxy file /tmp/x509up_u32031 not found
+DEBUG 2018-06-13 16:11:12,700: 	 Creating new proxy for 24:00 hours with VO group '' and VO role 'NULL'.
+DEBUG 2018-06-13 16:18:23,008: 	 Executing command: 'status'
+DEBUG 2018-06-13 16:18:23,008: 	 Found CRAB cache file /afs/cern.ch/user/s/shilpi/.crab3
+ERROR 2018-06-13 16:18:23,009: 	 Cannot find .requestcache file in CRAB project directory /afs/cern.ch/work/s/shilpi/work/2015/TB_June2018/CMSSW_10_1_2/src/SimG4CMS/HGCalTestBeam/test/JuneTB/crab_projects_Junev0/crab_Pi80GeV
+ERROR 2018-06-13 16:18:23,009: 	 Caught exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1805.patch1/bin/crab", line 160, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1805.patch1/bin/crab", line 146, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1805.patch1/lib/python2.7/site-packages/CRABClient/Commands/status.py", line 39, in __init__
+    SubCommand.__init__(self, logger, cmdargs)
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1805.patch1/lib/python2.7/site-packages/CRABClient/Commands/SubCommand.py", line 262, in __init__
+    self.validateOptions()
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1805.patch1/lib/python2.7/site-packages/CRABClient/Commands/status.py", line 1019, in validateOptions
+    SubCommand.validateOptions(self)
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1805.patch1/lib/python2.7/site-packages/CRABClient/Commands/SubCommand.py", line 580, in validateOptions
+    self.loadLocalCache()
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1805.patch1/lib/python2.7/site-packages/CRABClient/Commands/SubCommand.py", line 441, in loadLocalCache
+    raise ex
+CachefileNotFoundException: Cannot find .requestcache file in CRAB project directory /afs/cern.ch/work/s/shilpi/work/2015/TB_June2018/CMSSW_10_1_2/src/SimG4CMS/HGCalTestBeam/test/JuneTB/crab_projects_Junev0/crab_Pi80GeV

@@ -1,0 +1,132 @@
+DEBUG 2018-06-14 18:14:43,654: 	 Executing command: 'submit'
+DEBUG 2018-06-14 18:14:43,654: 	 Found CRAB cache file /afs/cern.ch/user/s/shilpi/.crab3
+DEBUG 2018-06-14 18:14:43,686: 	 Checking credentials
+DEBUG 2018-06-14 18:14:43,687: 	 Found proxy file /tmp/x509up_u32031
+DEBUG 2018-06-14 18:14:43,687: 	 Getting proxy life time left
+DEBUG 2018-06-14 18:14:44,897: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -timeleft
+ output : 77791
+
+ error: 
+ retcode : 0
+DEBUG 2018-06-14 18:14:46,936: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -actimeleft
+ output : 77789
+
+ error: 
+ retcode : 0
+DEBUG 2018-06-14 18:14:46,937: 	 Proxy valid for 21:36:31 hours
+DEBUG 2018-06-14 18:14:46,938: 	 Will use CRAB PrivateMC plugin (i.e. will run a MC generation job type).
+DEBUG 2018-06-14 18:14:47,076: 	 Executing : 
+ command : openssl x509 -in ~/.globus/usercert.pem -subject -noout
+ output : subject= /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=shilpi/CN=677773/CN=Shilpi Jain
+
+ error: 
+ retcode : 0
+DEBUG 2018-06-14 18:14:47,077: 	 Checking credentials
+DEBUG 2018-06-14 18:14:47,080: 	 Found proxy file /tmp/x509up_u32031
+DEBUG 2018-06-14 18:14:47,080: 	 Getting proxy life time left
+DEBUG 2018-06-14 18:14:48,297: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -timeleft
+ output : 77787
+
+ error: 
+ retcode : 0
+DEBUG 2018-06-14 18:14:49,513: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -actimeleft
+ output : 77786
+
+ error: 
+ retcode : 0
+DEBUG 2018-06-14 18:14:49,514: 	 Proxy valid for 21:36:27 hours
+DEBUG 2018-06-14 18:14:50,925: 	 Executing : 
+ command : env X509_USER_PROXY=/tmp/x509up_u32031 voms-proxy-info -fqan
+ output : /cms/Role=NULL/Capability=NULL
+
+ error: 
+ retcode : 0
+DEBUG 2018-06-14 18:14:52,258: 	 Registering user credentials for server /DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119|0108|0105|0109).cern.ch
+DEBUG 2018-06-14 18:14:52,382: 	 Executing : 
+ command : openssl x509 -in ~/.globus/usercert.pem -subject -noout
+ output : subject= /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=shilpi/CN=677773/CN=Shilpi Jain
+
+ error: 
+ retcode : 0
+DEBUG 2018-06-14 18:14:52,382: 	 Getting myproxy life time left for myproxy.cern.ch
+DEBUG 2018-06-14 18:14:52,383: 	 Calculating hash of /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=shilpi/CN=677773/CN=Shilpi Jain_cmsweb.cern.ch for credential name
+DEBUG 2018-06-14 18:14:52,692: 	 Executing : 
+ command : myproxy-info -l d13f84e44a1740c1b46535602f539530c42fbd83 -s myproxy.cern.ch
+ output : username: d13f84e44a1740c1b46535602f539530c42fbd83
+owner: /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=shilpi/CN=677773/CN=Shilpi Jain
+  renewal policy: /DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119|0108|0105|0109).cern.ch
+  trusted retrieval policy: /DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119|0108|0105|0109).cern.ch
+  timeleft: 360:19:02  (15.0 days)
+
+ error: 
+ retcode : 0
+DEBUG 2018-06-14 18:14:52,693: 	 Myproxy is valid: 1297142
+DEBUG 2018-06-14 18:14:52,693: 	 Command use: submit
+DEBUG 2018-06-14 18:14:52,694: 	 Options use: ['--config', <WMCore.Configuration.Configuration object at 0x7f72bdb6d510>]
+DEBUG 2018-06-14 18:14:54,020: 	 CRABClient version: 3.3.1805.patch1
+DEBUG 2018-06-14 18:14:54,020: 	 Instance is prod
+DEBUG 2018-06-14 18:14:54,020: 	 Server base url is cmsweb.cern.ch
+DEBUG 2018-06-14 18:14:54,020: 	 Command url /crabserver/prod/workflow
+DEBUG 2018-06-14 18:14:54,021: 	 Started submission
+DEBUG 2018-06-14 18:14:54,021: 	 Working on /afs/cern.ch/work/s/shilpi/work/2015/TB_June2018/CMSSW_10_1_2/src/SimG4CMS/HGCalTestBeam/test/JuneTB/crab_projects_Junev1/crab_Pi100GeV
+DEBUG 2018-06-14 18:14:55,684: 	 Loading required information from the environment
+DEBUG 2018-06-14 18:14:55,684: 	 Found CMSSW_10_1_2 for slc6_amd64_gcc630 with base /afs/cern.ch/work/s/shilpi/work/2015/TB_June2018/CMSSW_10_1_2
+DEBUG 2018-06-14 18:14:55,722: 	 UNIQUE NAME: tarUUID ebd02bfb-821b-4f4e-9c55-8076055162d5 
+DEBUG 2018-06-14 18:14:55,723: 	 self.config: from WMCore.Configuration import Configuration
+config = Configuration()
+config.section_('General')
+config.General.workArea = 'crab_projects_Junev1'
+config.General.transferLogs = False
+config.General.requestName = 'Pi100GeV'
+config.section_('JobType')
+config.JobType.psetName = 'HGCalTBCERN170_pi_E100_cfg.py'
+config.JobType.pluginName = 'PRIVATEMC'
+config.JobType.allowUndistributedCMSSW = True
+config.section_('Data')
+config.Data.totalUnits = 100000
+config.Data.unitsPerJob = 2000
+config.Data.splitting = 'EventBased'
+config.Data.inputDBS = 'global'
+config.Data.outLFNDirBase = '/store/group/upgrade/HGCAL/simulation/2018/Junev1/mc/'
+config.Data.publication = False
+config.section_('Site')
+config.Site.storageSite = 'T2_CH_CERN'
+config.section_('User')
+config.section_('Debug')
+
+DEBUG 2018-06-14 18:14:55,723: 	 self.config.JobType.psetName: HGCalTBCERN170_pi_E100_cfg.py
+INFO 2018-06-14 18:14:55,723: 	 Importing CMSSW configuration HGCalTBCERN170_pi_E100_cfg.py
+INFO 2018-06-14 18:14:55,783: 	 Finished importing CMSSW configuration HGCalTBCERN170_pi_E100_cfg.py
+DEBUG 2018-06-14 18:14:55,784: 	 Writing CMSSW configuration to /afs/cern.ch/work/s/shilpi/work/2015/TB_June2018/CMSSW_10_1_2/src/SimG4CMS/HGCalTestBeam/test/JuneTB/crab_projects_Junev1/crab_Pi100GeV/inputs/PSet.py
+DEBUG 2018-06-14 18:14:56,276: 	 The following EDM output files will be collected: []
+DEBUG 2018-06-14 18:14:56,276: 	 The following TFile output files will be collected: ['TBGenSim.root']
+DEBUG 2018-06-14 18:14:56,276: 	 The following user output files will be collected: []
+DEBUG 2018-06-14 18:14:56,276: 	 Loading required information from the environment
+DEBUG 2018-06-14 18:14:56,277: 	 Found CMSSW_10_1_2 for slc6_amd64_gcc630 with base /afs/cern.ch/work/s/shilpi/work/2015/TB_June2018/CMSSW_10_1_2
+DEBUG 2018-06-14 18:14:56,277: 	 Making tarball in /afs/cern.ch/work/s/shilpi/work/2015/TB_June2018/CMSSW_10_1_2/src/SimG4CMS/HGCalTestBeam/test/JuneTB/crab_projects_Junev1/crab_Pi100GeV/inputs/ebd02bfb-821b-4f4e-9c55-8076055162d5default.tgz
+DEBUG 2018-06-14 18:14:56,278: 	 Checking directory /afs/cern.ch/work/s/shilpi/work/2015/TB_June2018/CMSSW_10_1_2/lib
+DEBUG 2018-06-14 18:14:56,279: 	 Adding directory /afs/cern.ch/work/s/shilpi/work/2015/TB_June2018/CMSSW_10_1_2/lib to tarball
+DEBUG 2018-06-14 18:14:56,722: 	 Checking directory /afs/cern.ch/work/s/shilpi/work/2015/TB_June2018/CMSSW_10_1_2/biglib
+DEBUG 2018-06-14 18:14:56,722: 	 Adding directory /afs/cern.ch/work/s/shilpi/work/2015/TB_June2018/CMSSW_10_1_2/biglib to tarball
+DEBUG 2018-06-14 18:14:56,723: 	 Checking directory /afs/cern.ch/work/s/shilpi/work/2015/TB_June2018/CMSSW_10_1_2/module
+DEBUG 2018-06-14 18:14:56,827: 	 Adding data directory /afs/cern.ch/work/s/shilpi/work/2015/TB_June2018/CMSSW_10_1_2/src/Geometry/HGCalCommonData/data to tarball
+DEBUG 2018-06-14 18:14:57,139: 	 Adding data directory /afs/cern.ch/work/s/shilpi/work/2015/TB_June2018/CMSSW_10_1_2/src/Geometry/HGCalCommonData/interface to tarball
+DEBUG 2018-06-14 18:14:57,151: 	 Adding data directory /afs/cern.ch/work/s/shilpi/work/2015/TB_June2018/CMSSW_10_1_2/src/SimG4CMS/HGCalTestBeam/interface to tarball
+DEBUG 2018-06-14 18:14:57,268: 	 Uploading archive /afs/cern.ch/work/s/shilpi/work/2015/TB_June2018/CMSSW_10_1_2/src/SimG4CMS/HGCalTestBeam/test/JuneTB/crab_projects_Junev1/crab_Pi100GeV/inputs/ebd02bfb-821b-4f4e-9c55-8076055162d5default.tgz (0.980469.1 MB) to the CRAB cache. Using URI https://cmsweb.cern.ch/crabcache
+DEBUG 2018-06-14 18:14:59,005: 	 Loading required information from the environment
+DEBUG 2018-06-14 18:14:59,005: 	 Found CMSSW_10_1_2 for slc6_amd64_gcc630 with base /afs/cern.ch/work/s/shilpi/work/2015/TB_June2018/CMSSW_10_1_2
+DEBUG 2018-06-14 18:14:59,005: 	 Making tarball in /afs/cern.ch/work/s/shilpi/work/2015/TB_June2018/CMSSW_10_1_2/src/SimG4CMS/HGCalTestBeam/test/JuneTB/crab_projects_Junev1/crab_Pi100GeV/inputs/debugFiles.tgz
+DEBUG 2018-06-14 18:14:59,010: 	 Uploading archive /afs/cern.ch/work/s/shilpi/work/2015/TB_June2018/CMSSW_10_1_2/src/SimG4CMS/HGCalTestBeam/test/JuneTB/crab_projects_Junev1/crab_Pi100GeV/inputs/debugFiles.tgz (2 KB) to the CRAB cache. Using URI https://cmsweb.cern.ch/crabcache
+DEBUG 2018-06-14 18:15:00,264: 	 Result uploading input files: 8060e74aba1e7316d04bee3087e4ba6b397a16f95e0ba7f5bd534bfa514c0c54.tar.gz 
+INFO 2018-06-14 18:15:00,264: 	 Sending the request to the server
+DEBUG 2018-06-14 18:15:00,264: 	 Submitting {'maxjobruntime': 1250, 'extrajdl': [], 'ignorelocality': 0, 'savelogsflag': 0, 'useparent': 0, 'asyncdest': 'T2_CH_CERN', 'algoargs': 2000, 'cachefilename': '8060e74aba1e7316d04bee3087e4ba6b397a16f95e0ba7f5bd534bfa514c0c54.tar.gz', 'numcores': 1, 'addoutputfiles': [], 'generator': 'pythia', 'maxmemory': 2000, 'publishdbsurl': 'https://cmsweb.cern.ch/dbs/prod/phys03/DBSWriter', 'priority': 10, 'jobsw': 'CMSSW_10_1_2', 'edmoutfiles': [], 'userfiles': [], 'primarydataset': 'CRAB_PrivateMC', 'inputdata': '', 'lfn': '/store/group/upgrade/HGCAL/simulation/2018/Junev1/mc/', 'dryrun': 0, 'workflow': 'crab_Pi100GeV', 'cacheurl': u'https://cmsweb.cern.ch/crabcache', 'nonprodsw': 1, 'tfileoutfiles': ['TBGenSim.root'], 'oneEventMode': 0, 'debugfilename': 'e1a706345ed8e0909f1a3f99449502e30dee9e8931550ab8c516609695f8a2e6.tar.gz', 'saveoutput': 1, 'publication': 0, 'jobarch': 'slc6_amd64_gcc630', 'totalunits': 100000, 'splitalgo': 'EventBased', 'ignoreglobalblacklist': 0, 'nonvaliddata': 0, 'dbsurl': 'https://cmsweb.cern.ch/dbs/prod/global/DBSReader', 'publishgroupname': 0, 'jobtype': 'PrivateMC', 'publishname2': ''} 
+DEBUG 2018-06-14 18:15:00,265: 	 Encoded submit request: maxjobruntime=1250&ignorelocality=0&savelogsflag=0&useparent=0&asyncdest=T2_CH_CERN&algoargs=2000&cachefilename=8060e74aba1e7316d04bee3087e4ba6b397a16f95e0ba7f5bd534bfa514c0c54.tar.gz&numcores=1&generator=pythia&maxmemory=2000&publishdbsurl=https%3A%2F%2Fcmsweb.cern.ch%2Fdbs%2Fprod%2Fphys03%2FDBSWriter&priority=10&jobsw=CMSSW_10_1_2&primarydataset=CRAB_PrivateMC&inputdata=&lfn=%2Fstore%2Fgroup%2Fupgrade%2FHGCAL%2Fsimulation%2F2018%2FJunev1%2Fmc%2F&dryrun=0&workflow=crab_Pi100GeV&cacheurl=https%3A%2F%2Fcmsweb.cern.ch%2Fcrabcache&nonprodsw=1&oneEventMode=0&debugfilename=e1a706345ed8e0909f1a3f99449502e30dee9e8931550ab8c516609695f8a2e6.tar.gz&saveoutput=1&publication=0&jobarch=slc6_amd64_gcc630&totalunits=100000&splitalgo=EventBased&ignoreglobalblacklist=0&nonvaliddata=0&dbsurl=https%3A%2F%2Fcmsweb.cern.ch%2Fdbs%2Fprod%2Fglobal%2FDBSReader&publishgroupname=0&jobtype=PrivateMC&publishname2=&tfileoutfiles=TBGenSim.root
+DEBUG 2018-06-14 18:15:03,445: 	 Result: {u'result': [{u'RequestName': u'180614_161502:shilpi_crab_Pi100GeV'}]}
+INFO 2018-06-14 18:15:03,478: 	 Success: Your task has been delivered to the CRAB3 server.
+INFO 2018-06-14 18:15:03,479: 	 Task name: 180614_161502:shilpi_crab_Pi100GeV
+INFO 2018-06-14 18:15:03,479: 	 Please use 'crab status' to check how the submission process proceeds.
+DEBUG 2018-06-14 18:15:03,479: 	 About to return
