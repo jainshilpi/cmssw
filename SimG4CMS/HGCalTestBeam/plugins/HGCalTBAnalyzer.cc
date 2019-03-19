@@ -571,6 +571,17 @@ void HGCalTBAnalyzer::analyze(const edm::Event& iEvent,
     simHitCellIdFH_.clear(); simHitCellEnFH_.clear();
     simHitCellIdBH_.clear(); simHitCellEnBH_.clear();
     simHitCellIdBeam_.clear(); simHitCellEnBeam_.clear();
+    
+    simHitCellTimeFirstHitEE_.clear(); simHitCellTime15MipEE_.clear(); 
+    simHitCellTimeLastHitEE_.clear(); 
+
+    simHitCellTimeFirstHitFH_.clear(); simHitCellTime15MipFH_.clear(); 
+    simHitCellTimeLastHitFH_.clear(); 
+
+    simHitCellTimeFirstHitBH_.clear(); simHitCellTime15MipBH_.clear(); 
+    simHitCellTimeLastHitBH_.clear(); 
+
+
     edm::Handle<edm::PCaloHitContainer> theCaloHitContainers;
     std::vector<PCaloHit>               caloHits;
     if (ifEE_) {
@@ -835,7 +846,7 @@ void HGCalTBAnalyzer::analyzeSimHits (int type, std::vector<PCaloHit>& hits,
       depth           = hgcons_[type]->simToReco(cell,layer,sector,true).second;
       idx             = sector*1000+cell;
       
-      if(debug) std::cout<<"In sim to reco, depth is and layer is  : energy : "<<depth<<" "<<layer<<" "<<energy<<std::endl;
+      //if(debug) std::cout<<"In sim to reco, depth is and layer is  : energy : "<<depth<<" "<<layer<<" "<<energy<<std::endl;
       //nSimLayers[depth]++ ;
     }
 #ifdef EDM_ML_DEBUG
@@ -1086,6 +1097,9 @@ void HGCalTBAnalyzer::analyzeSimHits (int type, std::vector<PCaloHit>& hits,
       simHitCellTimeFirstHitEE_.push_back(time_firsthit);
       simHitCellTime15MipEE_.push_back(time15Mip);
       simHitCellTimeLastHitEE_.push_back(time_lasthit);
+      
+      if(debug && energy/GeV2Mip[id]<15 && map_hittime_15Mip[id]>0) std::cout<<"FOUND!!!!rechit energy : Finally for this cell, time is "<<energy/GeV2Mip[id]<<" "<<map_hittime_15Mip[id]<<std::endl;
+
     } else if (type == 1) {
       simHitCellIdFH_.push_back(id); simHitCellEnFH_.push_back(energy);
       simHitCellTimeFirstHitFH_.push_back(time_firsthit);
