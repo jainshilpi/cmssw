@@ -99,7 +99,7 @@ process.generator = cms.EDProducer("GaussRandomPThetaGunProducer",
 
 process.VtxSmeared.MeanX  = 33.106643
 process.VtxSmeared.SigmaX = .727934
-process.VtxSmeared.MeanY  = 33.106643
+process.VtxSmeared.MeanY  = 20.703788
 process.VtxSmeared.SigmaY = .638578
 process.VtxSmeared.MeanZ  = -800.0
 #process.VtxSmeared.MeanZ  = 1000.0
