@@ -25,8 +25,9 @@ process.load('RecoEgamma.EgammaMCTools.pfClusterMatchedToPhotonsSelector_cfi')
 
 # Global Tag configuration ... just using the same as in the RelVal
 from Configuration.AlCa.GlobalTag import GlobalTag
-#process.GlobalTag = GlobalTag(process.GlobalTag, '101X_upgrade2018_realistic_v7', '')
-process.GlobalTag = GlobalTag(process.GlobalTag, '105X_mc2017_realistic_v5', '')
+#process.GlobalTag = GlobalTag(process.GlobalTag, '90X_upgrade2017_realistic_ExtendedZeroMaterial_EGM_PFCalib', '')
+#process.GlobalTag = GlobalTag(process.GlobalTag, '94X_mc2017_realistic_v10', '')
+process.GlobalTag = GlobalTag(process.GlobalTag, '100X_upgrade2018_realistic_Fromv10ExtZeroMaterial_v1', '')
 
 process.MessageLogger.cerr.threshold = 'ERROR'
 process.MessageLogger.cerr.FwkReport.reportEvery = 1000
@@ -86,13 +87,13 @@ process.mix.digitizers = cms.PSet(process.theDigitizersValid)
 process.trackingtruth_step = cms.Path(process.pdigi_valid)
 
 # Remake the PFClusters
-process.pfclusters_step = cms.Path(process.bunchSpacingProducer *
-                                   process.ecalDigis * 
-                                   process.ecalPreshowerDigis * 
-                                   process.ecalPreshowerRecHit *
-                                   process.ecalMultiFitUncalibRecHit *
-                                   process.ecalDetIdToBeRecovered *
-                                   process.ecalRecHit *
+process.pfclusters_step = cms.Path(#process.bunchSpacingProducer *
+                                   #process.ecalDigis * 
+                                   #process.ecalPreshowerDigis * 
+                                   #process.ecalPreshowerRecHit *
+                                   #process.ecalMultiFitUncalibRecHit *
+                                   #process.ecalDetIdToBeRecovered *
+                                   #process.ecalRecHit *
                                    process.particleFlowRecHitPS * 
                                    process.particleFlowRecHitECAL * 
                                    process.particleFlowClusterECALUncorrected * 

@@ -5,7 +5,6 @@
 #include "SimDataFormats/Track/interface/SimTrack.h"
 #include <CLHEP/Matrix/Vector.h>
 #include <CLHEP/Vector/LorentzVector.h>
-#include "RecoEgamma/EgammaMCTools/interface/PhotonMCTruth.h"
 #include <vector>
 
 
@@ -18,6 +17,8 @@
  *  \author N. Marinelli  University of Notre Dame
 */
 
+class PhotonMCTruth;
+class ElectronMCTruth;
 class PizeroMCTruth {
 
   public:

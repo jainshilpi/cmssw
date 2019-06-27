@@ -1,0 +1,109 @@
+DEBUG 2018-03-21 13:36:10,939: 	 Executing command: 'submit'
+DEBUG 2018-03-21 13:36:10,947: 	 Found CRAB cache file /afs/cern.ch/user/s/shilpi/.crab3
+DEBUG 2018-03-21 13:36:10,975: 	 Checking credentials
+DEBUG 2018-03-21 13:36:10,976: 	 Proxy file /tmp/x509up_u32031 not found
+DEBUG 2018-03-21 13:36:10,976: 	 Creating new proxy for 24:00 hours with VO group '' and VO role 'NULL'.
+DEBUG 2018-03-21 13:36:17,567: 	 Executing command: 'submit'
+DEBUG 2018-03-21 13:36:17,571: 	 Found CRAB cache file /afs/cern.ch/user/s/shilpi/.crab3
+DEBUG 2018-03-21 13:36:17,594: 	 Checking credentials
+DEBUG 2018-03-21 13:36:17,595: 	 Proxy file /tmp/x509up_u32031 not found
+DEBUG 2018-03-21 13:36:17,595: 	 Creating new proxy for 24:00 hours with VO group '' and VO role 'NULL'.
+DEBUG 2018-03-21 13:36:23,726: 	 Executing : 
+ command : voms-proxy-init -voms cms:/cms -valid 24:00 -rfc
+ output : None
+ error: None
+ retcode : 0
+DEBUG 2018-03-21 13:36:24,440: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -timeleft
+ output : 86398
+
+ error: 
+ retcode : 0
+DEBUG 2018-03-21 13:36:25,156: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -actimeleft
+ output : 86397
+
+ error: 
+ retcode : 0
+DEBUG 2018-03-21 13:36:25,866: 	 Executing : 
+ command : env X509_USER_PROXY=/tmp/x509up_u32031 voms-proxy-info -fqan
+ output : /cms/Role=NULL/Capability=NULL
+
+ error: 
+ retcode : 0
+DEBUG 2018-03-21 13:36:25,866: 	 Proxy created.
+DEBUG 2018-03-21 13:36:25,867: 	 Will use CRAB Analysis plugin (i.e. will run an analysis job type).
+DEBUG 2018-03-21 13:36:25,872: 	 Executing command: 'submit'
+DEBUG 2018-03-21 13:36:25,873: 	 Found CRAB cache file /afs/cern.ch/user/s/shilpi/.crab3
+DEBUG 2018-03-21 13:36:25,883: 	 Checking credentials
+DEBUG 2018-03-21 13:36:25,883: 	 Found proxy file /tmp/x509up_u32031
+DEBUG 2018-03-21 13:36:25,883: 	 Getting proxy life time left
+DEBUG 2018-03-21 13:36:26,594: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -timeleft
+ output : 86396
+
+ error: 
+ retcode : 0
+DEBUG 2018-03-21 13:36:27,301: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -actimeleft
+ output : 86395
+
+ error: 
+ retcode : 0
+DEBUG 2018-03-21 13:36:27,302: 	 Proxy valid for 23:59:56 hours
+DEBUG 2018-03-21 13:36:27,303: 	 Will use CRAB Analysis plugin (i.e. will run an analysis job type).
+DEBUG 2018-03-21 13:36:27,306: 	 Executing command: 'submit'
+DEBUG 2018-03-21 13:36:27,306: 	 Found CRAB cache file /afs/cern.ch/user/s/shilpi/.crab3
+DEBUG 2018-03-21 13:36:27,316: 	 Checking credentials
+DEBUG 2018-03-21 13:36:27,316: 	 Found proxy file /tmp/x509up_u32031
+DEBUG 2018-03-21 13:36:27,316: 	 Getting proxy life time left
+DEBUG 2018-03-21 13:36:28,024: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -timeleft
+ output : 86395
+
+ error: 
+ retcode : 0
+DEBUG 2018-03-21 13:36:28,734: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -actimeleft
+ output : 86394
+
+ error: 
+ retcode : 0
+DEBUG 2018-03-21 13:36:28,735: 	 Proxy valid for 23:59:55 hours
+DEBUG 2018-03-21 13:36:28,735: 	 Will use CRAB Analysis plugin (i.e. will run an analysis job type).
+DEBUG 2018-03-21 13:36:28,743: 	 Executing command: 'submit'
+DEBUG 2018-03-21 13:36:28,743: 	 Found CRAB cache file /afs/cern.ch/user/s/shilpi/.crab3
+DEBUG 2018-03-21 13:36:28,749: 	 Checking credentials
+DEBUG 2018-03-21 13:36:28,750: 	 Found proxy file /tmp/x509up_u32031
+DEBUG 2018-03-21 13:36:28,750: 	 Getting proxy life time left
+DEBUG 2018-03-21 13:36:29,559: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -timeleft
+ output : 86393
+
+ error: 
+ retcode : 0
+DEBUG 2018-03-21 13:36:30,267: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -actimeleft
+ output : 86392
+
+ error: 
+ retcode : 0
+DEBUG 2018-03-21 13:36:30,268: 	 Proxy valid for 23:59:53 hours
+DEBUG 2018-03-21 13:36:30,269: 	 Will use CRAB Analysis plugin (i.e. will run an analysis job type).
+DEBUG 2019-04-25 15:40:35,398: 	 Executing command: 'submit'
+DEBUG 2019-04-25 15:40:35,424: 	 Found CRAB cache file /afs/cern.ch/user/s/shilpi/.crab3
+DEBUG 2019-04-25 15:40:35,467: 	 Checking credentials
+DEBUG 2019-04-25 15:40:35,467: 	 Proxy file /tmp/x509up_u32031 not found
+DEBUG 2019-04-25 15:40:35,467: 	 Creating new proxy for 24:00 hours with VO group '' and VO role 'NULL'.
+DEBUG 2019-04-25 15:40:41,286: 	 Executing : 
+ command : voms-proxy-init -voms cms:/cms -valid 24:00 -rfc
+ output : None
+ error: None
+ retcode : 1
+DEBUG 2019-04-25 15:40:41,995: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u32031 -timeleft
+ output : 
+ error: Proxy not found: /tmp/x509up_u32031 (No such file or directory)
+
+ retcode : 1
+ERROR 2019-04-25 15:40:41,996: 	 Error while checking proxy timeleft for /tmp/x509up_u32031
