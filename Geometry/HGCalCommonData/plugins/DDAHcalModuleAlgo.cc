@@ -194,6 +194,8 @@ void DDAHcalModuleAlgo::positionSensitive(DDLogicalPart& glog,
                                           DDCompactView& cpv) {
   int ncol = tileN[0] / 2;
   int nrow = tileN[1] / 2;
+
+  //std::cout<<"DDAHcalModuleAlgo .... nCol : nRow "<<ncol<<" "<<nrow<<std::endl;
 #ifdef EDM_ML_DEBUG
   int kount(0);
   edm::LogVerbatim("HGCalGeom") 
@@ -210,10 +212,12 @@ void DDAHcalModuleAlgo::positionSensitive(DDLogicalPart& glog,
       if (nr != 0 && nc != 0) {
         DDTranslation tran(xpos, ypos, 0.0);
         DDRotation rotation;
-        int copy = inr * 10 + inc;
-        if (nc < 0) copy += 100;
-        if (nr < 0) copy += 1000;
-        DDName name = DDName(DDSplit(tile).first, DDSplit(tile).second);
+
+        int copy = inr * 100 + inc;
+        if (nc < 0) copy += 10000;
+        if (nr < 0) copy += 100000;
+
+	DDName name = DDName(DDSplit(tile).first, DDSplit(tile).second);
         cpv.position(name, glog.ddname(), copy, tran, rotation);
 #ifdef EDM_ML_DEBUG
         kount++;

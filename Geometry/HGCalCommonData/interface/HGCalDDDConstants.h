@@ -170,6 +170,10 @@ class HGCalDDDConstants {
   bool waferVirtual(int layer, int waferU, int waferV) const;
   double waferZ(int layer, bool reco) const;
 
+  ///SJ            
+  double              getLayerThickness(int layer) const { return hgpar_->layerThick_[layer-1]; };
+
+
  private:
   int cellHex(double xx, double yy, const double& cellR,
               const std::vector<double>& posX,

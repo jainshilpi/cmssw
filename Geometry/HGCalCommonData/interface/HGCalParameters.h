@@ -153,6 +153,9 @@ class HGCalParameters {
   wafer_map typesInLayers_;
   waferT_map waferTypes_;
 
+  ///SJ                                                                                                                                                                                                   
+  std::vector<double>                layerThick_;
+
   COND_SERIALIZABLE;
 
  private:

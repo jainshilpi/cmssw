@@ -387,6 +387,31 @@ void HGCalGeomParameters::loadGeometryHexagon(
       }
     }
   }
+
+  ////SJ
+  double minActiveThick = 100; ///bad that I am doing it hardcoded for now. It will be changed
+  
+  std::cout<<"layerGroup_.size() "<<php.layerGroup_.size()<<std::endl;
+  
+  for (unsigned int i=0; i<php.layerGroup_.size(); i=i+3) {
+    
+    double totThickness = 0;
+    for (unsigned int k=0; k<3; ++k) {
+      
+      if (php.layerGroup_[i+k]!=-1 ) 
+	{
+	  totThickness += minActiveThick;
+	}
+      
+    }//for (unsigned int k=0; k<3; ++k) 
+      
+    
+    php.layerThick_.push_back(totThickness);
+    
+  }//for (unsigned int i=0; i<php.layerGroup_.size(); ++i)
+  ///SJ
+
+
   HGCalParameters::hgtrap mytr = php.getModule(0, false);
   mytr.bl *= HGCalParameters::k_ScaleFromDDD;
   mytr.tl *= HGCalParameters::k_ScaleFromDDD;
