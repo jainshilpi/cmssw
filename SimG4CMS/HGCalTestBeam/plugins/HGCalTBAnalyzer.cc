@@ -1199,7 +1199,7 @@ void HGCalTBAnalyzer::analyzeSimHits (int type, std::vector<PCaloHit>& hits,
 	xx = xy.first;
 	double y = xy.second;
 
-	std::cout<<"HGCalTBAnalyzer: id : row : column : X : Y : "<<id<<" "<<row<<" "<<col<<" "<<xx<<" "<<y<<std::endl;
+	//std::cout<<"HGCalTBAnalyzer: id : row : column : X : Y : "<<id<<" "<<row<<" "<<col<<" "<<xx<<" "<<y<<std::endl;
       } else {
 	int      subdet, zside, layer, sector, subsector, cell;
 	HGCalTestNumbering::unpackHexagonIndex(id, subdet, zside, layer, sector,
