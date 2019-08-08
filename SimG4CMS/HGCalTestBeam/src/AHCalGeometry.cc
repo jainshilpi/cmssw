@@ -12,7 +12,6 @@ AHCalGeometry::AHCalGeometry(edm::ParameterSet const& iC)
                              << " deltaY = " << deltaY_ << " deltaZ = " << deltaZ_ << " zFirst = " << zFirst_;
 
 
-  //std::cout<<"AHCAL maxDepth: deltaX : deltaY : deltaZ : zFirst : "<<maxDepth_<<" "<<deltaX_<<" "<<deltaY_<<" "<<deltaZ_<<" "<<zFirst_<<std::endl;
 }
 
 std::pair<double, double> AHCalGeometry::getXY(const AHCalDetId& id) const {

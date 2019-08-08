@@ -7,7 +7,6 @@
 /** \class AHCalGeometry
  *  Gets position of AHCal cell
  */
-
 class AHCalGeometry {
 public:
   /** Create geometry of AHCal */
