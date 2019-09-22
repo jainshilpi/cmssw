@@ -5,7 +5,8 @@ import FWCore.ParameterSet.Config as cms
 
 # Run with the 2017 detector
 from Configuration.StandardSequences.Eras import eras
-process = cms.Process('SKIM',eras.Run2_2017)
+#process = cms.Process('SKIM',eras.Run2_2017)
+process = cms.Process('SKIM',eras.Run2_2018)
 
 # Import the standard packages for reconstruction and digitization
 process.load('Configuration.StandardSequences.Services_cff')
@@ -25,7 +26,9 @@ process.load('RecoEgamma.EgammaMCTools.pfClusterMatchedToPhotonsSelector_cfi')
 
 # Global Tag configuration ... just using the same as in the RelVal
 from Configuration.AlCa.GlobalTag import GlobalTag
-process.GlobalTag = GlobalTag(process.GlobalTag, '81X_upgrade2017_realistic_v26', '')
+#process.GlobalTag = GlobalTag(process.GlobalTag, '101X_upgrade2018_realistic_v7', '')
+#process.GlobalTag = GlobalTag(process.GlobalTag, '105X_mc2017_realistic_v5', '')
+process.GlobalTag = GlobalTag(process.GlobalTag, '105X_upgrade2018_realistic_v4', '')
 
 process.MessageLogger.cerr.threshold = 'ERROR'
 process.MessageLogger.cerr.FwkReport.reportEvery = 1000
@@ -52,23 +55,30 @@ savedCollections = cms.untracked.vstring('drop *',
                                          'keep *_offlinePrimaryVertices_*_*',
                                          'keep *_particleFlowCluster*_*_*')
 
-process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(15))
+#process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(10000))
+process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(100))
 
 process.source = cms.Source("PoolSource",                 
                             fileNames = cms.untracked.vstring(
-        '/store/mc/PhaseIFall16DR/GluGluHToGG_M-125_13TeV_powheg_pythia8/AODSIM/FlatPU28to62HcalNZSRAW_81X_upgrade2017_realistic_v26-v1/100000/005AB6CE-27ED-E611-98CA-E0071B7A8590.root'
+        #'/store/mc/RunIISpring18DR/DoublePhotonNoMaterial_FlatPt-0p01To10/AODSIM/noPUExtZeroMaterial_NoMaterial_100X_upgrade2018_realistic_Fromv10ExtZeroMaterial_v1-v1/70000/2AD780A9-8A23-E811-9415-0025905B85FC.root'
+        #'/store/mc/RunIIWinter19PFCalibDR/DoublePhotonNoMaterial_FlatPt-10To300/AODSIM/2018ConditionsFlatPU0to70ExtZeroMaterial_NoMaterial_105X_upgrade2018_realistic_v4-v1/230000/BD8D622F-C9A7-4B4F-A9C1-77C7831B11B5.root'
+        
+        '/store/mc/RunIIWinter19PFCalibDR/DoublePhotonNoMaterial_FlatPt-10To300/AODSIM/2018ConditionsFlatPU0to70ExtZeroMaterial_NoMaterial_105X_upgrade2018_realistic_v4-v1/230000/B4DF3A8B-4170-6442-9A04-B60A024EA849.root'
         ),
                             secondaryFileNames = cms.untracked.vstring(
-        '/store/mc/PhaseIFall16DR/GluGluHToGG_M-125_13TeV_powheg_pythia8/GEN-SIM-RAW/FlatPU28to62HcalNZSRAW_81X_upgrade2017_realistic_v26-v1/100000/0416D6B7-04ED-E611-B342-E0071B7A8550.root',
-        '/store/mc/PhaseIFall16DR/GluGluHToGG_M-125_13TeV_powheg_pythia8/GEN-SIM-RAW/FlatPU28to62HcalNZSRAW_81X_upgrade2017_realistic_v26-v1/100000/14829DD8-04ED-E611-8049-A0000420FE80.root',
-        '/store/mc/PhaseIFall16DR/GluGluHToGG_M-125_13TeV_powheg_pythia8/GEN-SIM-RAW/FlatPU28to62HcalNZSRAW_81X_upgrade2017_realistic_v26-v1/100000/54AFE9C4-04ED-E611-952D-A0000420FE80.root',
-        '/store/mc/PhaseIFall16DR/GluGluHToGG_M-125_13TeV_powheg_pythia8/GEN-SIM-RAW/FlatPU28to62HcalNZSRAW_81X_upgrade2017_realistic_v26-v1/100000/5A32C6B9-04ED-E611-B1EB-E0071B7A8550.root',
-        '/store/mc/PhaseIFall16DR/GluGluHToGG_M-125_13TeV_powheg_pythia8/GEN-SIM-RAW/FlatPU28to62HcalNZSRAW_81X_upgrade2017_realistic_v26-v1/100000/60E162B8-04ED-E611-898D-E0071B7A58F0.root',
-        '/store/mc/PhaseIFall16DR/GluGluHToGG_M-125_13TeV_powheg_pythia8/GEN-SIM-RAW/FlatPU28to62HcalNZSRAW_81X_upgrade2017_realistic_v26-v1/100000/6A47DD1A-FEEC-E611-81EB-A0000420FE80.root',
-        '/store/mc/PhaseIFall16DR/GluGluHToGG_M-125_13TeV_powheg_pythia8/GEN-SIM-RAW/FlatPU28to62HcalNZSRAW_81X_upgrade2017_realistic_v26-v1/100000/92B923B6-04ED-E611-9DC9-24BE05C48821.root',
-        '/store/mc/PhaseIFall16DR/GluGluHToGG_M-125_13TeV_powheg_pythia8/GEN-SIM-RAW/FlatPU28to62HcalNZSRAW_81X_upgrade2017_realistic_v26-v1/100000/B40E77B4-04ED-E611-9E30-E0071B7A45D0.root',
-        '/store/mc/PhaseIFall16DR/GluGluHToGG_M-125_13TeV_powheg_pythia8/GEN-SIM-RAW/FlatPU28to62HcalNZSRAW_81X_upgrade2017_realistic_v26-v1/100000/C48157B5-04ED-E611-BEC1-E0071B7A45D0.root',
-        '/store/mc/PhaseIFall16DR/GluGluHToGG_M-125_13TeV_powheg_pythia8/GEN-SIM-RAW/FlatPU28to62HcalNZSRAW_81X_upgrade2017_realistic_v26-v1/100000/CAED3A16-FEEC-E611-8262-24BE05CEFB41.root'
+
+        #'/store/mc/RunIISpring18DR/DoublePhotonNoMaterial_FlatPt-0p01To10/GEN-SIM-RAW/noPUExtZeroMaterial_NoMaterial_100X_upgrade2018_realistic_Fromv10ExtZeroMaterial_v1-v1/70000/22BB046D-7123-E811-85FA-0025905B85DC.root',
+        #'/store/mc/RunIISpring18DR/DoublePhotonNoMaterial_FlatPt-0p01To10/GEN-SIM-RAW/noPUExtZeroMaterial_NoMaterial_100X_upgrade2018_realistic_Fromv10ExtZeroMaterial_v1-v1/70000/28CDF63C-7423-E811-8A94-0CC47A4D7668.root'
+        
+        #'/store/mc/RunIIWinter19PFCalibDR/DoublePhotonNoMaterial_FlatPt-10To300/GEN-SIM-RAW/2018ConditionsFlatPU0to70ExtZeroMaterial_NoMaterial_105X_upgrade2018_realistic_v4-v1/2310000/3913B738-12EE-0B4D-A9EC-847F55E07B92.root',
+        #'/store/mc/RunIIWinter19PFCalibDR/DoublePhotonNoMaterial_FlatPt-10To300/GEN-SIM-RAW/2018ConditionsFlatPU0to70ExtZeroMaterial_NoMaterial_105X_upgrade2018_realistic_v4-v1/2310000/4E20A4B6-AB1A-8D43-8F45-1403BDDE9EAC.root',
+        #'/store/mc/RunIIWinter19PFCalibDR/DoublePhotonNoMaterial_FlatPt-10To300/GEN-SIM-RAW/2018ConditionsFlatPU0to70ExtZeroMaterial_NoMaterial_105X_upgrade2018_realistic_v4-v1/2310000/B8619FBB-B5D3-C34F-9648-0B7E3072403D.root'
+
+
+        '/store/mc/RunIIWinter19PFCalibDR/DoublePhotonNoMaterial_FlatPt-10To300/GEN-SIM-RAW/2018ConditionsFlatPU0to70ExtZeroMaterial_NoMaterial_105X_upgrade2018_realistic_v4-v1/2310000/0EE292DE-FC8F-5145-8552-0C1A64ADA497.root',
+        '/store/mc/RunIIWinter19PFCalibDR/DoublePhotonNoMaterial_FlatPt-10To300/GEN-SIM-RAW/2018ConditionsFlatPU0to70ExtZeroMaterial_NoMaterial_105X_upgrade2018_realistic_v4-v1/2310000/471659E1-B870-1B49-8E58-BE418D741198.root',
+        '/store/mc/RunIIWinter19PFCalibDR/DoublePhotonNoMaterial_FlatPt-10To300/GEN-SIM-RAW/2018ConditionsFlatPU0to70ExtZeroMaterial_NoMaterial_105X_upgrade2018_realistic_v4-v1/2310000/D83A47B1-3B1B-954A-AEC3-DFCBB8FB6AE1.root',
+        '/store/mc/RunIIWinter19PFCalibDR/DoublePhotonNoMaterial_FlatPt-10To300/GEN-SIM-RAW/2018ConditionsFlatPU0to70ExtZeroMaterial_NoMaterial_105X_upgrade2018_realistic_v4-v1/2310000/F8DDE8B5-F650-B746-9F9F-E195A1AFC994.root'
 )
                             )
 process.PFCLUSTERoutput = cms.OutputModule("PoolOutputModule",
@@ -76,10 +86,15 @@ process.PFCLUSTERoutput = cms.OutputModule("PoolOutputModule",
                                                                         filterName = cms.untracked.string('')
                                                                         ),
                                            eventAutoFlushCompressedSize = cms.untracked.int32(5242880),
-                                           fileName = cms.untracked.string('skimEGMobjects_fromRAW.root'),
+                                           fileName = cms.untracked.string('/eos/cms/store/group/phys_egamma/PFClusterCalibration/skimEGMobjects_fromRAW_orig.root'),
                                            outputCommands = savedCollections,
                                            splitLevel = cms.untracked.int32(0)
                                            )
+
+
+#Setup FWK for multithreaded                                                                                                                                                                                
+process.options.numberOfThreads=cms.untracked.uint32(4)
+process.options.numberOfStreams=cms.untracked.uint32(0)
 
 # Run the digitizer to make the trackingparticles
 process.mix.digitizers = cms.PSet(process.theDigitizersValid)
