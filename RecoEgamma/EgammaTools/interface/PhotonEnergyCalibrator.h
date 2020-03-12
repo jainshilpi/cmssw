@@ -26,7 +26,7 @@ class PhotonEnergyCalibrator
   };
 
   PhotonEnergyCalibrator() {}
-  PhotonEnergyCalibrator(const std::string& correctionFile);  
+  PhotonEnergyCalibrator(const std::string& correctionFile, int smearingType);  
   ~PhotonEnergyCalibrator(){}
   
   /// Initialize with a random number generator (if not done, it will use the CMSSW service)
