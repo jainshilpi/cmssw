@@ -95,7 +95,7 @@ def _getEnergyCorrectionFile(era):
     if era=="2018-Prompt":
         return "EgammaAnalysis/ElectronTools/data/ScalesSmearings/Run2018_Step2Closure_CoarseEtaR9Gain_v2"
     if era=="2017-UL":
-        return "EgammaAnalysis/ElectronTools/data/ScalesSmearings/Run2017_24Feb2020_runEtaR9Gain_v1"
+        return "EgammaAnalysis/ElectronTools/data/ScalesSmearings/Run2017_24Feb2020_runEtaR9Gain_v2"
         #raise RuntimeError('Error in postRecoEgammaTools, era 2017-UL does not yet have energy corrections, please contact the e/gamma pog for more information')
     raise LogicError('Error in postRecoEgammaTools, era '+era+' not added to energy corrections function, please update this function')
 
