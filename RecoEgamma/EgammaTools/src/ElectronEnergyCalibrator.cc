@@ -10,8 +10,8 @@ const EnergyScaleCorrection::ScaleCorrection ElectronEnergyCalibrator::defaultSc
 const EnergyScaleCorrection::SmearCorrection ElectronEnergyCalibrator::defaultSmearCorr_;
 
 ElectronEnergyCalibrator::ElectronEnergyCalibrator(const EpCombinationTool &combinator,
-						   const std::string& correctionFile) :
-  correctionRetriever_(correctionFile), 
+						   const std::string& correctionFile, int smearingType) :
+  correctionRetriever_(correctionFile, smearingType), 
   epCombinationTool_(&combinator), 
   rng_(nullptr),
   minEt_(1.0)
@@ -40,8 +40,8 @@ calibrate(reco::GsfElectron &ele, unsigned int runNumber,
 	  const float smearNrSigma, 
 	  const ElectronEnergyCalibrator::EventType eventType) const
 {
-  const float scEtaAbs = std::abs(ele.superCluster()->eta());
-  const float et = ele.ecalEnergy() / cosh(scEtaAbs);
+  const double scEtaAbs = std::abs(ele.superCluster()->eta());
+  const double et = ele.ecalEnergy() / cosh(scEtaAbs);
 
   if (et < minEt_ || edm::isNotFinite(et) ) {
     std::array<float,EGEnergySysIndex::kNrSysErrs> retVal;
@@ -70,11 +70,12 @@ calibrate(reco::GsfElectron &ele, unsigned int runNumber,
 
   const EnergyScaleCorrection::ScaleCorrection* scaleCorr = correctionRetriever_.getScaleCorr(runNumber, et, scEtaAbs, ele.full5x5_r9(), gainSeedSC);  
   const EnergyScaleCorrection::SmearCorrection* smearCorr = correctionRetriever_.getSmearCorr(runNumber, et, scEtaAbs, ele.full5x5_r9(), gainSeedSC);  
+  
   if(scaleCorr==nullptr) scaleCorr=&defaultScaleCorr_;
   if(smearCorr==nullptr) smearCorr=&defaultSmearCorr_;
   
   std::array<float,EGEnergySysIndex::kNrSysErrs> uncertainties{};
-  
+
   uncertainties[EGEnergySysIndex::kScaleValue]  = scaleCorr->scale();
   uncertainties[EGEnergySysIndex::kSmearValue]  = smearCorr->sigma(et); //even though we use scale = 1.0, we still store the value returned for MC
   uncertainties[EGEnergySysIndex::kSmearNrSigma]  = smearNrSigma;
