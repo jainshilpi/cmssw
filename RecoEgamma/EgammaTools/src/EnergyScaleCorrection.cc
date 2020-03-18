@@ -9,8 +9,9 @@
 #include <algorithm>
 
 
-EnergyScaleCorrection::EnergyScaleCorrection(const std::string& correctionFileName, unsigned int genSeed):
-  smearingType_(ECALELF)
+EnergyScaleCorrection::EnergyScaleCorrection(const std::string& correctionFileName, int smearingType, unsigned int genSeed):
+  //smearingType_(ECALELF)
+  smearingType_((FileFormat)smearingType)
 {
 
   if(!correctionFileName.empty()) { 
@@ -95,6 +96,7 @@ EnergyScaleCorrection::getScaleCorr(unsigned int runnr, double et, double eta, d
   if(!result.first->first.inCategory(runnr,et,eta,r9,gainSeed)){
     throw cms::Exception("LogicError") <<" error found scale category "<<result.first->first<<" that does not contain run "<<runnr<<" et "<<et<<" eta "<<eta<<" r9 "<<r9<<" gain seed "<<gainSeed;
   }
+
   return &result.first->second;
 }
 
@@ -136,11 +138,31 @@ void EnergyScaleCorrection::addScale(const std::string& category, int runMin, in
     throw cms::Exception("ConfigError") << "Category already defined! "<<cat;
   }
   
+  
   ScaleCorrection corr(energyScale,energyScaleErrStat,energyScaleErrSyst,energyScaleErrGain);
   scales_.push_back({cat,corr});
   std::sort(scales_.begin(),scales_.end(),Sorter<CorrectionCategory,ScaleCorrection>()); 
   
 }
+
+
+void EnergyScaleCorrection::addScale(int runMin, int runMax,    double etaMin, double etaMax,  
+				     double r9Min, double r9Max,    double etMin, double etMax,   
+				     unsigned int gain,    double energyScale, double energyScaleErrStat, 
+				     double energyScaleErrSyst, double energyScaleErrGain) { 
+  CorrectionCategory cat(runMin, runMax, etaMin, etaMax, r9Min, r9Max, etMin, etMax, gain); // build the category from the string 
+
+  auto result = std::equal_range(scales_.begin(),scales_.end(),cat,Sorter<CorrectionCategory,ScaleCorrection>());
+  if(result.first!=result.second){
+    throw cms::Exception("ConfigError") << "Category already defined! "<<cat;
+  }
+
+  ScaleCorrection corr(energyScale,energyScaleErrStat,energyScaleErrSyst,energyScaleErrGain); 
+  scales_.push_back({cat,corr});
+  std::sort(scales_.begin(),scales_.end(),Sorter<CorrectionCategory,ScaleCorrection>()); 
+
+ }
+
 
 void EnergyScaleCorrection::addSmearing(const std::string& category,int runMin, int runMax,
 					double rho, double errRho, 
@@ -182,12 +204,46 @@ void EnergyScaleCorrection::readScalesFromFile(const std::string& filename)
   std::string category, region2;
   double energyScale, energyScaleErr, energyScaleErrStat, energyScaleErrSyst, energyScaleErrGain;
   
-  for(file >> category; file.good(); file >> category) {
-    file >> region2
-	 >> runMin >> runMax
-	 >> energyScale >> energyScaleErr >> energyScaleErrStat >> energyScaleErrSyst >> energyScaleErrGain;
-    addScale(category, runMin, runMax, energyScale, energyScaleErrStat, energyScaleErrSyst, energyScaleErrGain);
+  double etaMin; ///< Min eta value for the bin 
+  double etaMax; ///< Max eta value for the bin 
+  double r9Min;  ///< Min R9 vaule for the bin 
+  double r9Max;  ///< Max R9 value for the bin 
+  double etMin;  ///< Min Et value for the bin 
+  double etMax;  ///< Max Et value for the bin unsigned int gain; ///< 12, 6, 1, 61 (double gain switch) 
+  unsigned int gain; ///< 12, 6, 1, 61 (double gain switch)
+  
+  if(smearingType_ == ECALELF){
+
+    for(file >> category; file.good(); file >> category) {
+      ///std::cout<<"category "<<category<<std::endl;
+      //runMin runMax etaMin etaMax r9Min r9Max etMin etMax gain scale totalUncertainty
+      //absEta_2_2.5-bad-gainEle_1
+      
+      file >> region2
+	   >> runMin >> runMax
+	   >> energyScale >> energyScaleErr >> energyScaleErrStat >> energyScaleErrSyst >> energyScaleErrGain;
+      //std::cout<<"region 2 "<<region2<<std::endl;
+
+      addScale(category, runMin, runMax, energyScale, energyScaleErrStat, energyScaleErrSyst, energyScaleErrGain);
+    }
+  }else{
+
+    if(file.peek()=='r') file.ignore(1000,10); 
+    
+    for(file >> runMin; file.good(); file >> runMin) 
+      { 
+	file >> runMax >> etaMin >> etaMax >> r9Min >> r9Max >> etMin 
+	     >> etMax >> gain  >> energyScale >> energyScaleErr; 
+	//std::cout <<  err_deltaP << " ##" <<  (char) file.peek() << "$$" << std::endl; 
+	file.ignore(1000,10);//if(file.peek()!=10) file>> err_deltaP_stat >> err_deltaP_syst >> err_deltaP_gain; 
+	//else 
+	energyScaleErrStat = energyScaleErr; 
+	//std::cout<<"Reading file : "<<" "<<runMin<<" "<<runMax<<" "<<etaMin<<" "<<etaMax<<" "<<r9Min<<" "<<r9Max<<" "<<etMin<<" "<<etMax<<" "<<gain<<" "<<energyScale<<" "<<energyScaleErr<<" "<<std::endl;
+	//std::cout << runMin << "\t" << runMax << std::endl; 
+	addScale(runMin, runMax, etaMin, etaMax, r9Min, r9Max, etMin, etMax, gain, energyScale, energyScaleErrStat, energyScaleErrSyst, energyScaleErrGain); 
+      } 
   }
+  
   
   file.close();  
   return;
@@ -231,7 +287,7 @@ void EnergyScaleCorrection::readSmearingsFromFile(const std::string& filename)
       
       addSmearing(category, runMin, runMax, rho,  errRho, phi, errPhi, eMean, errEMean);
       
-    } else if(smearingType_ == ECALELF) {
+    } else if(smearingType_ == ECALELF || smearingType_ == TABLE) {
       file >> category >> 
 	eMean >> errEMean >>
 	rho >> errRho >> phiString >> errPhiString;
@@ -394,8 +450,9 @@ EnergyScaleCorrection::CorrectionCategory::CorrectionCategory(const std::string&
   
 
 }
+
 bool EnergyScaleCorrection::CorrectionCategory::
-inCategory(const unsigned int runnr, const float et, const float eta, const float r9, 
+inCategory(const unsigned int runnr, const double et, const double eta, const double r9, 
 	   const unsigned int gainSeed)const
 {
   return runnr>= runMin_ && runnr<= runMax_ &&

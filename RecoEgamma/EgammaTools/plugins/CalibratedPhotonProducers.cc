@@ -91,7 +91,7 @@ namespace{
 template<typename T>
 CalibratedPhotonProducerT<T>::CalibratedPhotonProducerT( const edm::ParameterSet & conf ) :
   photonToken_(consumes<edm::View<T> >(conf.getParameter<edm::InputTag>("src"))),
-  energyCorrector_(conf.getParameter<std::string >("correctionFile")),
+  energyCorrector_(conf.getParameter<std::string >("correctionFile"), conf.getParameter<int>("smearingType")),
   recHitCollectionEBToken_(consumes<EcalRecHitCollection>(conf.getParameter<edm::InputTag>("recHitCollectionEB"))),
   recHitCollectionEEToken_(consumes<EcalRecHitCollection>(conf.getParameter<edm::InputTag>("recHitCollectionEE"))),
   produceCalibratedObjs_(conf.getParameter<bool>("produceCalibratedObjs"))
@@ -119,6 +119,7 @@ void CalibratedPhotonProducerT<T>::fillDescriptions(edm::ConfigurationDescriptio
   desc.add<edm::InputTag>("recHitCollectionEB",edm::InputTag("reducedEcalRecHitsEB"));
   desc.add<edm::InputTag>("recHitCollectionEE",edm::InputTag("reducedEcalRecHitsEE"));
   desc.add<std::string>("correctionFile",std::string());
+  desc.add<int>("smearingType",3);
   desc.add<double>("minEtToCalibrate",5.0);
   desc.add<bool>("produceCalibratedObjs",true);
   desc.add<bool>("semiDeterministic",true);
