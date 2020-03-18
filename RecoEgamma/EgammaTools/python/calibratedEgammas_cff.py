@@ -3,13 +3,21 @@ import FWCore.ParameterSet.Config as cms
 _correctionFile2016Legacy = "EgammaAnalysis/ElectronTools/data/ScalesSmearings/Legacy2016_07Aug2017_FineEtaR9_v3_ele_unc"
 _correctionFile2017Nov17 = "EgammaAnalysis/ElectronTools/data/ScalesSmearings/Run2017_17Nov2017_v1_ele_unc"
 
+_smearingType = 3 ###3 is ECALELF type and hence reads the old style file
+###4 is TABLE type and hence reads the new style file which is more compatible to be put in GTs
+
+
+
+print("Inside calibratedEgammas")
+
 calibratedEgammaSettings = cms.PSet(minEtToCalibrate = cms.double(5.0),
                                     semiDeterministic = cms.bool(True),
                                     correctionFile = cms.string(_correctionFile2017Nov17),
                                     recHitCollectionEB = cms.InputTag('reducedEcalRecHitsEB'),
                                     recHitCollectionEE = cms.InputTag('reducedEcalRecHitsEE'),
+                                    smearingType = cms.int32(_smearingType),
                                     produceCalibratedObjs = cms.bool(True)
-                                    )
+)
 from Configuration.Eras.Modifier_run2_miniAOD_80XLegacy_cff import run2_miniAOD_80XLegacy
 run2_miniAOD_80XLegacy.toModify(calibratedEgammaSettings,correctionFile = _correctionFile2016Legacy)
 
@@ -60,7 +68,8 @@ calibratedPatElectrons = cms.EDProducer("CalibratedPatElectronProducer",
                                         calibratedEgammaPatSettings,
                                         epCombConfig = ecalTrkCombinationRegression,
                                         src = cms.InputTag('slimmedElectrons'), 
-                                       )
+                                        
+)
 
 calibratedPhotons = cms.EDProducer("CalibratedPhotonProducer",
                                    calibratedEgammaSettings,
