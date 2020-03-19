@@ -347,7 +347,8 @@ def _setupEgammaEnergyCorrections(eleSrc,phoSrc,cfg):
     if cfg.applyEnergyCorrections or cfg.applyVIDOnCorrectedEgamma:
         eleCalibProd.produceCalibratedObjs = True
         phoCalibProd.produceCalibratedObjs = True
-        return cms.InputTag(eleCalibName),cms.InputTag(eleCalibName)
+        #return cms.InputTag(eleCalibName),cms.InputTag(eleCalibName)
+        return cms.InputTag(eleCalibName),cms.InputTag(phoCalibName)
     else:
         eleCalibProd.produceCalibratedObjs = False 
         phoCalibProd.produceCalibratedObjs = False 
@@ -355,6 +356,7 @@ def _setupEgammaEnergyCorrections(eleSrc,phoSrc,cfg):
     
         
 def _setupEgammaVID(eleSrc,phoSrc,cfg):
+
     process = cfg.process
     process.egammaVIDTask = cms.Task()
     if cfg.runVID:
