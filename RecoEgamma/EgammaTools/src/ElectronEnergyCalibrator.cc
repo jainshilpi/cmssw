@@ -148,7 +148,8 @@ setEnergyAndSystVarations(const float scale,const float smearNrSigma,const float
   energyData[EGEnergySysIndex::kScaleDown] = calCombinedMom(ele,corrScaleDn,smear).first;
   energyData[EGEnergySysIndex::kSmearUp]   = calCombinedMom(ele,corrUp,smearUp).first;
   energyData[EGEnergySysIndex::kSmearDown] = calCombinedMom(ele,corrDn,smearDn).first;
-  
+
+
   const std::pair<float, float> combinedMomentum = calCombinedMom(ele,corr,smear);
   setEcalEnergy(ele,corr,smear);
   const float energyCorr =  combinedMomentum.first / oldP4.t();
