@@ -71,11 +71,7 @@ EGammaSFModifier::EGammaSFModifier(const edm::ParameterSet& conf, edm::ConsumesC
     throw cms::Exception("ConfigError") <<"Error constructing EGammaSFModifier, year "<< year << " not valid" << std::endl;
   } 
 
-  std::cout<<"SJ!!! Inside EGammaSFModifier ; year is "<<year<<std::endl;
-  std::cout<<"SJ!!! Inside EGammaSFModifier ; EleFile name : SF name : "<<elejson_file<<" "<<ele_sf_name<<std::endl;
   elesf.read_json( elejson_file );
-  
-  std::cout<<"SJ!!! Inside EGammaSFModifier ; PhoFile name : SF name : "<<phojson_file<<" "<<pho_sf_name<<std::endl;
   phosf.read_json( phojson_file );
 
 
@@ -97,7 +93,6 @@ void EGammaSFModifier::modifyObject(pat::Electron& ele) const {
   ele.addUserFloat(ele_sf_name + "_value", eleUserFloatValue);
   ele.addUserFloat(ele_sf_name + "_error", eleUserFloatError);
 
-  std::cout<<"SJ!!!ele pt : eta bin : SF +/err "<<ele_pt_eta_str[0]<<" "<<ele_pt_eta_str[1]<<" "<<eleUserFloatValue<<" "<<eleUserFloatError<<std::endl;
 }
 
 void EGammaSFModifier::modifyObject(pat::Photon& pho) const {
@@ -115,7 +110,6 @@ void EGammaSFModifier::modifyObject(pat::Photon& pho) const {
   pho.addUserFloat(pho_sf_name + "_value", phoUserFloatValue);
   pho.addUserFloat(pho_sf_name + "_error", phoUserFloatError);
 
-  std::cout<<"SJ!!!pho pt : eta bin : SF +/err "<<pho_pt_eta_str[0]<<" "<<pho_pt_eta_str[1]<<" "<<phoUserFloatValue<<" "<<phoUserFloatError<<std::endl;
 }
 
 string stripZeros (string bin_str) {
