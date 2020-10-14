@@ -10,13 +10,13 @@ const EnergyScaleCorrection::ScaleCorrection ElectronEnergyCalibrator::defaultSc
 const EnergyScaleCorrection::SmearCorrection ElectronEnergyCalibrator::defaultSmearCorr_;
 
 ElectronEnergyCalibrator::ElectronEnergyCalibrator(const EpCombinationTool &combinator,
-						   const std::string& correctionFile) :
-  correctionRetriever_(correctionFile), 
+						   const std::string& correctionFile, const bool readJSON) :
+  correctionRetriever_(correctionFile, readJSON), 
   epCombinationTool_(&combinator), 
   rng_(nullptr),
   minEt_(1.0)
 {
-  
+
 }
 
 void ElectronEnergyCalibrator::initPrivateRng(TRandom *rnd)

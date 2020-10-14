@@ -7,15 +7,16 @@ _correctionFile2017UL    = "EgammaAnalysis/ElectronTools/data/ScalesSmearings/Ru
 calibratedEgammaSettings = cms.PSet(minEtToCalibrate = cms.double(5.0),
                                     semiDeterministic = cms.bool(True),
                                     correctionFile = cms.string(_correctionFile2017Nov17),
+                                    fileTypeJSON = cms.bool(False),
                                     recHitCollectionEB = cms.InputTag('reducedEcalRecHitsEB'),
                                     recHitCollectionEE = cms.InputTag('reducedEcalRecHitsEE'),
                                     produceCalibratedObjs = cms.bool(True)
                                    )
 from Configuration.Eras.Modifier_run2_miniAOD_80XLegacy_cff import run2_miniAOD_80XLegacy
-run2_miniAOD_80XLegacy.toModify(calibratedEgammaSettings,correctionFile = _correctionFile2016Legacy)
+run2_miniAOD_80XLegacy.toModify(calibratedEgammaSettings,correctionFile = _correctionFile2016Legacy, fileTypeJSON = False)
 
 from Configuration.Eras.Modifier_run2_miniAOD_devel_cff import run2_miniAOD_devel
-run2_miniAOD_devel.toModify(calibratedEgammaSettings,correctionFile = _correctionFile2017UL)
+run2_miniAOD_devel.toModify(calibratedEgammaSettings,correctionFile = _correctionFile2017UL, fileTypeJSON = False)
 
 calibratedEgammaPatSettings = calibratedEgammaSettings.clone(
     recHitCollectionEB = cms.InputTag('reducedEgamma','reducedEBRecHits'),

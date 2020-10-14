@@ -104,7 +104,7 @@ template<typename T>
 CalibratedElectronProducerT<T>::CalibratedElectronProducerT( const edm::ParameterSet & conf ) :
   electronToken_(consumes<edm::View<T>>(conf.getParameter<edm::InputTag>("src"))),
   epCombinationTool_(conf.getParameter<edm::ParameterSet>("epCombConfig")),
-  energyCorrector_(epCombinationTool_, conf.getParameter<std::string>("correctionFile")),
+  energyCorrector_(epCombinationTool_, conf.getParameter<std::string>("correctionFile"), conf.getParameter<bool>("fileTypeJSON")),
   recHitCollectionEBToken_(consumes<EcalRecHitCollection>(conf.getParameter<edm::InputTag>("recHitCollectionEB"))),
   recHitCollectionEEToken_(consumes<EcalRecHitCollection>(conf.getParameter<edm::InputTag>("recHitCollectionEE"))),
   produceCalibratedObjs_(conf.getParameter<bool>("produceCalibratedObjs"))
@@ -132,6 +132,7 @@ void CalibratedElectronProducerT<T>::fillDescriptions(edm::ConfigurationDescript
   desc.add<edm::InputTag>("recHitCollectionEB",edm::InputTag("reducedEcalRecHitsEB"));
   desc.add<edm::InputTag>("recHitCollectionEE",edm::InputTag("reducedEcalRecHitsEE"));
   desc.add<std::string>("correctionFile",std::string());
+  desc.add<bool>("fileTypeJSON",false);
   desc.add<double>("minEtToCalibrate",5.0);
   desc.add<bool>("produceCalibratedObjs",true);
   desc.add<bool>("semiDeterministic",true);

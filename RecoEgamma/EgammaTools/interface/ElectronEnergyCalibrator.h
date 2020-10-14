@@ -30,7 +30,7 @@ public:
   };
 
   ElectronEnergyCalibrator() {}
-  ElectronEnergyCalibrator(const EpCombinationTool &combinator, const std::string& correctionFile );
+  ElectronEnergyCalibrator(const EpCombinationTool &combinator, const std::string& correctionFile, const bool readJSON );
   ~ElectronEnergyCalibrator() {}
   
   /// Initialize with a random number generator (if not done, it will use the CMSSW service)

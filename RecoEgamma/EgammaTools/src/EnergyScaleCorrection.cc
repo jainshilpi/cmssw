@@ -9,20 +9,43 @@
 #include <algorithm>
 #include <sstream>
 #include <iterator>
+////SJ
+#include <boost/property_tree/json_parser.hpp>
+#include <boost/property_tree/ptree.hpp>
 
-EnergyScaleCorrection::EnergyScaleCorrection(const std::string& correctionFileName, unsigned int genSeed)
+
+
+EnergyScaleCorrection::EnergyScaleCorrection(const std::string& correctionFileName, bool readJSON, unsigned int genSeed)
     : smearingType_(ECALELF) {
   if (!correctionFileName.empty()) {
+
+    ///SJ
+    if(!readJSON){
     std::string filename = correctionFileName + "_scales.dat";
     readScalesFromFile(filename);
+    }
+    if(readJSON){
+      std::string filename = correctionFileName + "_scales.json";
+      readScalesFromJSONFile(filename);
+    }
+
     if (scales_.empty()) {
       throw cms::Exception("EnergyScaleCorrection") << "scale correction map empty";
     }
   }
 
   if (!correctionFileName.empty()) {
+    ///SJ
+    if(!readJSON){
     std::string filename = correctionFileName + "_smearings.dat";
     readSmearingsFromFile(filename);
+    }
+    
+    if(readJSON){
+      std::string filename = correctionFileName + "_smearings.json";
+      readSmearingsFromJSONFile(filename);
+    }
+    
     if (smearings_.empty()) {
       throw cms::Exception("EnergyScaleCorrection") << "smearing correction map empty";
     }
@@ -333,6 +356,220 @@ void EnergyScaleCorrection::readSmearingsFromFile(const std::string& filename) {
   return;
 }
 
+
+
+//////SJ - updates for reading from a JSON file
+void EnergyScaleCorrection::readScalesFromJSONFile(const std::string& filename) {
+  
+  
+  namespace pt = boost::property_tree;
+  
+  std::ifstream file(edm::FileInPath(filename).fullPath().c_str());
+   
+  if (!file.good()) {
+    throw cms::Exception("EnergyScaleCorrection") << "file " << filename << " not readable.";
+  }
+  
+  ///read here
+  pt::ptree tree;
+  pt::read_json(edm::FileInPath(filename).fullPath().c_str(), tree);
+
+  std::map<std::string, float> readValsF;
+  std::map<std::string, std::string> readValsS;
+  
+  double etaMin;      ///< Min eta value for the bin
+  double etaMax;      ///< Max eta value for the bin
+  double r9Min;       ///< Min R9 vaule for the bin
+  double r9Max;       ///< Max R9 value for the bin
+  double etMin;       ///< Min Et value for the bin
+  double etMax;       ///< Max Et value for the bin
+  unsigned int gain;  ///< 12, 6, 1, 61 (double gain switch)
+  int runMin, runMax;
+  double energyScale, energyScaleErr, energyScaleErrStat, energyScaleErrSyst, energyScaleErrGain;
+
+  for(auto&& itrun : tree) { // RUN LOOP
+    const pt::ptree & tree_eta = itrun.second; 
+    for(auto&& iteta : tree_eta) { // ETA LOOP
+      const pt::ptree & tree_r9 = iteta.second; 
+      for(auto&& itr9 : tree_r9) { // R9 LOOP
+	const pt::ptree & tree_pt = itr9.second; 
+	for(auto&& itpt: tree_pt) { // PT LOOP
+	  const pt::ptree & tree_gain = itpt.second; 
+	  for(auto&& itgain: tree_gain) { // Gain LOOP
+	    const pt::ptree & tree_values = itgain.second; 
+	    for(auto&& itvalues: tree_values) { // (All the values of run, eta, r9 associated to it
+	      const std::string k_feat = itvalues.first;
+	      const pt::ptree & tree_feat = itvalues.second; 
+	      if (auto tmpval = tree_feat.get_value_optional<float>()) 
+		{
+		  readValsF[k_feat] = tmpval.get();
+		}
+	      else if(auto tmpval = tree_feat.get_value_optional<std::string>()){
+		readValsS[k_feat] = tmpval.get();
+	      }
+	      
+	    }
+	    ///call the addscale immediately after reading
+	    std::vector<std::string> neededKeys;
+	    neededKeys.push_back("runMin");
+	    neededKeys.push_back("runMax");
+	    neededKeys.push_back("etaMin");
+	    neededKeys.push_back("etaMax");
+	    neededKeys.push_back("r9Min");
+	    neededKeys.push_back("r9Max");
+	    neededKeys.push_back("ptMin");
+	    neededKeys.push_back("ptMax");
+	    neededKeys.push_back("gain");
+	    neededKeys.push_back("scale");
+	    neededKeys.push_back("scaleErr");
+	    
+	    ///make sure that the needed variables are there otherwise raise an alarm
+	    bool allKeysFound = checkKeys(neededKeys, readValsF);
+	    
+	    if(allKeysFound){
+	      runMin = (int)readValsF["runMin"];
+	      
+	      
+	      runMax = (int)readValsF["runMax"];
+	      etaMin = readValsF["etaMin"];
+	      etaMax = readValsF["etaMax"];
+	      r9Min = readValsF["r9Min"];
+	      r9Max = readValsF["r9Max"];
+	      etMin = readValsF["ptMin"];
+	      etMax = readValsF["ptMax"];
+	      gain = (unsigned int)readValsF["gain"];
+	      energyScale = readValsF["scale"];
+	      energyScaleErrStat = readValsF["scaleErr"]; 
+	    }
+	    else{
+	      throw cms::Exception("EnergyScaleCorrection") << "There is a missing variable from scales JSON File ";
+	    }
+	    
+	    energyScaleErrSyst = 0;
+	    energyScaleErrGain = 0;
+	    
+	    
+	    //cout<<"runMin : runMax : etaMin : etaMax : r9Min : r9Max : etMin : etMax : "<<runMin<<" "<<runMax<<" "<<etaMin<<" "<<etaMax<<" "<<r9Min<<" "<<r9Max<<" "<<etMin<<" "<<etMax<<" "<<gain<<" "<<energyScale<<" "<<energyScaleErrStat<<endl;
+	    
+	    addScale(runMin,
+		     runMax,
+		     etaMin,
+		     etaMax,
+		     r9Min,
+		     r9Max,
+		     etMin,
+		     etMax,
+		     gain,
+		     energyScale,
+		     energyScaleErrStat,
+		     energyScaleErrSyst,
+		     energyScaleErrGain);
+	    
+	    
+	  }///Gain
+	}///PT
+      }///R9
+    }///ETA
+  }///run
+  ///close the file here
+}
+
+///smearing
+void EnergyScaleCorrection::readSmearingsFromJSONFile(const std::string& filename) {
+
+  namespace pt = boost::property_tree;
+
+  std::ifstream file(edm::FileInPath(filename).fullPath().c_str());
+  
+  if (!file.good()) {
+    throw cms::Exception("EnergyScaleCorrection") << "file " << filename << " not readable.";
+  }
+
+  pt::ptree tree;
+  pt::read_json(edm::FileInPath(filename).fullPath().c_str(), tree);
+
+  std::map<std::string, float> readValsF;
+  std::map<std::string, std::string> readValsS;
+  
+  int runMin = 0;
+  int runMax = 900000;
+  std::string category, region2;
+  double rho, phi, eMean, errRho, errPhi, errEMean;
+  std::string phiString, errPhiString;
+  
+    for(auto&& itcat : tree) { // R9 LOOP
+      const pt::ptree & tree_values = itcat.second; 
+      for(auto&& itvalues: tree_values) { // (All the values of run, eta, r9 associated to it
+	const std::string k_feat = itvalues.first;
+	const pt::ptree & tree_feat = itvalues.second; 
+	if (auto tmpval = tree_feat.get_value_optional<float>()) 
+	  {
+	    readValsF[k_feat] = tmpval.get();
+	  }
+	else if(auto tmpval = tree_feat.get_value_optional<std::string>()){
+	  readValsS[k_feat] = tmpval.get();
+	}
+	
+      }
+      
+      ///call the addSmearing immediately after reading
+      ///check the float here
+      std::vector<std::string> neededKeys;
+      neededKeys.push_back("Emean");
+      neededKeys.push_back("EmeanErr");
+      neededKeys.push_back("rho");
+      neededKeys.push_back("rhoErr");
+      
+      ///make sure that the needed variables are there otherwise raise an alarm
+      bool allKeysFound = checkKeys(neededKeys, readValsF);
+
+      ///check string here
+      neededKeys.clear();
+      neededKeys.push_back("category");
+      neededKeys.push_back("phi");
+      neededKeys.push_back("phiErr");
+      
+      allKeysFound = checkKeys(neededKeys, readValsS);
+      
+      if(allKeysFound){
+	category = readValsS["category"];
+	eMean = readValsF["Emean"];
+	errEMean = readValsF["EmeanErr"];
+	rho = readValsF["rho"];
+	errRho = readValsF["rhoErr"];
+	
+	phiString = readValsS["phi"];
+	errPhiString = readValsS["phiErr"];
+	
+	if (phiString == "M_PI_2")
+	  phi = M_PI_2;
+	else
+	  phi = std::stod(phiString);
+	
+	if (errPhiString == "M_PI_2")
+	  errPhi = M_PI_2;
+	else
+	  errPhi = std::stod(errPhiString);
+      }
+
+      else{
+	throw cms::Exception("EnergyScaleCorrection") << "There is a missing variable from smearing JSON File ";
+      }
+      
+      //std::cout<<"category : rho : rhoErr : phi : phiErr : "<<category<<" "<<rho<<" "<<errRho<<" "<<phi<<" "<<errPhi<<std::endl;
+
+      addSmearing(category, runMin, runMax, rho, errRho, phi, errPhi, eMean, errEMean);
+
+      
+    }///cat
+  ///close the file
+  //file.close();
+  return;
+}
+
+
+//////END OF UPDATES OF READING FROM A JSON FILE
+
 std::ostream& EnergyScaleCorrection::ScaleCorrection::print(std::ostream& os) const {
   os << "( " << scale_ << " +/- " << scaleErrStat_ << " +/- " << scaleErrSyst_ << " +/- " << scaleErrGain_ << ")";
   return os;
@@ -535,4 +772,21 @@ std::ostream& EnergyScaleCorrection::CorrectionCategory::print(std::ostream& os)
   os << runMin_ << " " << runMax_ << "\t" << etaMin_ << " " << etaMax_ << "\t" << r9Min_ << " " << r9Max_ << "\t"
      << etMin_ << " " << etMax_ << "\t" << gain_;
   return os;
+}
+
+
+template<typename T>
+bool EnergyScaleCorrection::checkKeys(const std::vector<std::string> neededKeys, const std::map<std::string,T> readVals){
+
+  bool allKeysFound = true;
+  
+  for(int i=0; i<(int)neededKeys.size(); i++){
+
+    if(readVals.find(neededKeys[i]) == readVals.end() ){
+      allKeysFound = false;
+      throw cms::Exception("EnergyScaleCorrection") << "Missing variable from scale and smearing JSON File: " << neededKeys[i]<<" Please check your JSON file!!!";
+    }
+  }
+  
+  return allKeysFound;
 }

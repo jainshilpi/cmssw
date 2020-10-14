@@ -9,8 +9,8 @@
 const EnergyScaleCorrection::ScaleCorrection PhotonEnergyCalibrator::defaultScaleCorr_;
 const EnergyScaleCorrection::SmearCorrection PhotonEnergyCalibrator::defaultSmearCorr_;
 
-PhotonEnergyCalibrator::PhotonEnergyCalibrator(const std::string& correctionFile):
-  correctionRetriever_(correctionFile),
+PhotonEnergyCalibrator::PhotonEnergyCalibrator(const std::string& correctionFile, const bool readJSON):
+  correctionRetriever_(correctionFile, readJSON),
   rng_(nullptr),
   minEt_(1.0)
 {

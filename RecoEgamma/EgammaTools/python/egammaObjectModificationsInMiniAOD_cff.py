@@ -1,4 +1,5 @@
 import FWCore.ParameterSet.Config as cms
+import os
 
 #electron mva ids
 import RecoEgamma.ElectronIdentification.Identification.mvaElectronID_Spring16_GeneralPurpose_V1_cff as ele_spring16_gp_v1
@@ -135,6 +136,21 @@ egamma8XLegacyEtScaleSysModifier = cms.PSet(
         highEtUncert = cms.double(-0.002)
         )
     )
+
+egammaSFModifier  = cms.PSet(
+    modifierName  = cms.string('EGammaSFModifier'),
+    elefilename      = cms.string(os.environ['CMSSW_BASE'] + "/src/RecoEgamma/EgammaTools/data/run2_eleIDs.json"),
+    year          = cms.string("2016"),
+    ele_sf_name   = cms.string("mvaEleID-Fall17-noIso-V2-wp80"),
+    ele_pt_bndrs  = cms.vdouble(10., 20., 35.0, 50., 100., 200., 500.),
+    ele_eta_bndrs = cms.vdouble(-2.5, -2.0, -1.566, -1.444, -0.8, 0.0, 0.8, 1.444, 1.566, 2.0, 2.5), 
+    #pho_sf_name   = cms.string("cutBasedElectronID-Fall17-94X-V2-veto"),
+    phofilename      = cms.string(os.environ['CMSSW_BASE'] + "/src/RecoEgamma/EgammaTools/data/run2_eleIDs.json"),
+    #pho_sf_name   = cms.string("cutBasedPhotonID-Fall17-94X-V2-tight"),
+    pho_sf_name   = cms.string("cutBasedElectronID-Fall17-94X-V2-tight"),
+    pho_pt_bndrs  = cms.vdouble(10., 20., 35.0, 50., 100., 200., 500.),
+    pho_eta_bndrs = cms.vdouble(-2.5, -2.0, -1.566, -1.444, -0.8, 0.0, 0.8, 1.444, 1.566, 2.0, 2.5) 
+)
 
 def appendReducedEgammaEnergyScaleAndSmearingModifier(modifiers):
     modifiers.append(reducedEgammaEnergyScaleAndSmearingModifier)

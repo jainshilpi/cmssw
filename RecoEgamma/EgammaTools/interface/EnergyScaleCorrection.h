@@ -13,6 +13,8 @@
 #include <cmath>
 #include <string>
 #include <bitset>
+#include <map>
+
 
 class EnergyScaleCorrection {
 public:
@@ -123,7 +125,7 @@ public:
   };
 
 public:
-  EnergyScaleCorrection(const std::string& correctionFileName, unsigned int genSeed = 0);
+  EnergyScaleCorrection(const std::string& correctionFileName, bool readJSON = false, unsigned int genSeed = 0);
   EnergyScaleCorrection(){};
   ~EnergyScaleCorrection() {}
 
@@ -186,6 +188,11 @@ private:
 
   void readScalesFromFile(const std::string& filename);
   void readSmearingsFromFile(const std::string& filename);
+  ///SJ
+  void readScalesFromJSONFile(const std::string& filename);
+  void readSmearingsFromJSONFile(const std::string& filename);
+  template<typename T>
+  bool checkKeys(const std::vector<std::string> neededKeys, const std::map<std::string,T> readVals);
 
   //static data members
   static constexpr float kDefaultScaleVal_ = 1.0;
