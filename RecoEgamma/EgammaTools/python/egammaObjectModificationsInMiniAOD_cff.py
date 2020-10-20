@@ -140,15 +140,17 @@ egamma8XLegacyEtScaleSysModifier = cms.PSet(
 
 egammaSFModifier  = cms.PSet(
     modifierName  = cms.string('EGammaSFModifier'),
-    elefilename      = cms.string(os.environ['CMSSW_BASE'] + "/src/RecoEgamma/EgammaTools/data/run2_eleIDs.json"),
-    year          = cms.string("2016"),
-    ele_sf_name   = cms.string("mvaEleID-Fall17-noIso-V2-wp80"),
+    elefilename      = cms.string(os.environ['CMSSW_BASE'] + "/src/RecoEgamma/EgammaTools/data/run2_EleIDs.json"),
+    year          = cms.string("2017"),
+    #ele_sf_name   = cms.string("mvaEleID-Fall17-noIso-V2-wp80"),
+    ele_sf_name   = cms.string(""),
     ele_pt_bndrs  = cms.vdouble(10., 20., 35.0, 50., 100., 200., 500.),
     ele_eta_bndrs = cms.vdouble(-2.5, -2.0, -1.566, -1.444, -0.8, 0.0, 0.8, 1.444, 1.566, 2.0, 2.5), 
     #pho_sf_name   = cms.string("cutBasedElectronID-Fall17-94X-V2-veto"),
-    phofilename      = cms.string(os.environ['CMSSW_BASE'] + "/src/RecoEgamma/EgammaTools/data/run2_eleIDs.json"),
+    phofilename      = cms.string(os.environ['CMSSW_BASE'] + "/src/RecoEgamma/EgammaTools/data/run2_PhoIDs.json"),
     #pho_sf_name   = cms.string("cutBasedPhotonID-Fall17-94X-V2-tight"),
-    pho_sf_name   = cms.string("cutBasedElectronID-Fall17-94X-V2-tight"),
+    pho_sf_name   = cms.string(""),
+    #pho_sf_name   = cms.string("cutBasedElectronID-Fall17-94X-V2-tight"),
     pho_pt_bndrs  = cms.vdouble(10., 20., 35.0, 50., 100., 200., 500.),
     pho_eta_bndrs = cms.vdouble(-2.5, -2.0, -1.566, -1.444, -0.8, 0.0, 0.8, 1.444, 1.566, 2.0, 2.5) 
 )
