@@ -186,6 +186,12 @@ calibratedPatElectrons102X = RecoEgamma.EgammaTools.calibratedEgammas_cff.calibr
 )
 run2_nanoAOD_102Xv1.toModify(calibratedPatElectrons102X, src = "slimmedElectronsUpdated")
 
+calibratedPatElectrons106X = RecoEgamma.EgammaTools.calibratedEgammas_cff.calibratedPatElectrons.clone(
+    produceCalibratedObjs = False,
+    correctionFile = cms.string("EgammaAnalysis/ElectronTools/data/ScalesSmearings/Run2017_24Feb2020_runEtaR9Gain_v2"),
+)
+run2_nanoAOD_106Xv1.toModify(calibratedPatElectrons106X, src = "slimmedElectronsUpdated")
+
 slimmedElectronsWithUserData = cms.EDProducer("PATElectronUserDataEmbedder",
     src = cms.InputTag("slimmedElectrons"),
     userFloats = cms.PSet(
