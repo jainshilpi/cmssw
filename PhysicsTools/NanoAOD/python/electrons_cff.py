@@ -171,6 +171,18 @@ for modifier in run2_miniAOD_80XLegacy,run2_nanoAOD_94XMiniAODv1,run2_nanoAOD_94
 
 import RecoEgamma.EgammaTools.calibratedEgammas_cff
 
+calibratedPatElectronsUL17 = RecoEgamma.EgammaTools.calibratedEgammas_cff.calibratedPatElectrons.clone(
+    produceCalibratedObjs = False,
+    correctionFile = cms.string("EgammaAnalysis/ElectronTools/data/ScalesSmearings/Run2017_24Feb2020_runEtaR9Gain_v2"),
+)
+run2_egamma_2017.toModify(calibratedPatElectronsUL17, src = "slimmedElectronsUpdated")
+
+calibratedPatElectronsUL18 = RecoEgamma.EgammaTools.calibratedEgammas_cff.calibratedPatElectrons.clone(
+    produceCalibratedObjs = False,
+    correctionFile = cms.string("EgammaAnalysis/ElectronTools/data/ScalesSmearings/Run2018_29Sep2020_RunFineEtaR9Gain"),
+)
+run2_egamma_2018.toModify(calibratedPatElectronsUL18, src = "slimmedElectronsUpdated")
+
 calibratedPatElectrons80XLegacy = RecoEgamma.EgammaTools.calibratedEgammas_cff.calibratedPatElectrons.clone(
     produceCalibratedObjs = False,
     correctionFile = cms.string("EgammaAnalysis/ElectronTools/data/ScalesSmearings/Legacy2016_07Aug2017_FineEtaR9_v3_ele_unc"),
@@ -190,17 +202,6 @@ calibratedPatElectrons102X = RecoEgamma.EgammaTools.calibratedEgammas_cff.calibr
 )
 run2_nanoAOD_102Xv1.toModify(calibratedPatElectrons102X, src = "slimmedElectronsUpdated")
 
-calibratedPatElectronsUL17 = RecoEgamma.EgammaTools.calibratedEgammas_cff.calibratedPatElectrons.clone(
-    produceCalibratedObjs = False,
-    correctionFile = cms.string("EgammaAnalysis/ElectronTools/data/ScalesSmearings/Run2017_24Feb2020_runEtaR9Gain_v2"),
-)
-run2_egamma_2017.toModify(calibratedPatElectronsUL17, src = "slimmedElectronsUpdated")
-
-calibratedPatElectronsUL18 = RecoEgamma.EgammaTools.calibratedEgammas_cff.calibratedPatElectrons.clone(
-    produceCalibratedObjs = False,
-    correctionFile = cms.string("EgammaAnalysis/ElectronTools/data/ScalesSmearings/Run2018_29Sep2020_RunFineEtaR9Gain"),
-)
-run2_egamma_2018.toModify(calibratedPatElectronsUL18, src = "slimmedElectronsUpdated")
 
 slimmedElectronsWithUserData = cms.EDProducer("PATElectronUserDataEmbedder",
     src = cms.InputTag("slimmedElectrons"),
@@ -524,6 +525,16 @@ heepIDVarValueMaps.dataFormat = 2
 
 _withTo106XAndUpdate_sequence = cms.Sequence(_updateTo106X_sequence + slimmedElectronsUpdated + electronSequence.copy())
 
+_withTo106XAndUpdateAndUL17Scale_sequence = _withTo106XAndUpdate_sequence.copy()
+_withTo106XAndUpdateAndUL17Scale_sequence.replace(slimmedElectronsWithUserData, calibratedPatElectronsUL17 + slimmedElectronsWithUserData)
+_withTo106XAndUpdateAndUL17Scale_sequence.replace(bitmapVIDForEle, slimmedElectronsWithUserData + bitmapVIDForEle)
+run2_egamma_2017.toReplaceWith(electronSequence, _withTo106XAndUpdateAndUL17Scale_sequence)
+
+_withTo106XAndUpdateAndUL18Scale_sequence = _withTo106XAndUpdate_sequence.copy()
+_withTo106XAndUpdateAndUL18Scale_sequence.replace(slimmedElectronsWithUserData, calibratedPatElectronsUL18 + slimmedElectronsWithUserData)
+_withTo106XAndUpdateAndUL18Scale_sequence.replace(bitmapVIDForEle, slimmedElectronsWithUserData + bitmapVIDForEle)
+run2_egamma_2018.toReplaceWith(electronSequence, _withTo106XAndUpdateAndUL18Scale_sequence)
+
 _withTo106XAndUpdateAnd80XLegacyScale_sequence = _withTo106XAndUpdate_sequence.copy()
 _withTo106XAndUpdateAnd80XLegacyScale_sequence.replace(slimmedElectronsWithUserData, calibratedPatElectrons80XLegacy + bitmapVIDForEleSpring15 +bitmapVIDForEleSum16 + slimmedElectronsWithUserData)
 run2_miniAOD_80XLegacy.toReplaceWith(electronSequence, _withTo106XAndUpdateAnd80XLegacyScale_sequence)
@@ -545,12 +556,3 @@ _withUpdate_sequence = electronSequence.copy()
 _withUpdate_sequence.replace(bitmapVIDForEle, slimmedElectronsUpdated + bitmapVIDForEle)
 run2_nanoAOD_106Xv1.toReplaceWith(electronSequence, _withUpdate_sequence)
 
-_withTo106XAndUpdateAndUL17Scale_sequence = _withTo106XAndUpdate_sequence.copy()
-_withTo106XAndUpdateAndUL17Scale_sequence.replace(slimmedElectronsWithUserData, calibratedPatElectronsUL17 + slimmedElectronsWithUserData)
-_withTo106XAndUpdateAndUL17Scale_sequence.replace(bitmapVIDForEle, slimmedElectronsWithUserData + bitmapVIDForEle)
-run2_egamma_2017.toReplaceWith(electronSequence, _withTo106XAndUpdateAndUL17Scale_sequence)
-
-_withTo106XAndUpdateAndUL18Scale_sequence = _withTo106XAndUpdate_sequence.copy()
-_withTo106XAndUpdateAndUL18Scale_sequence.replace(slimmedElectronsWithUserData, calibratedPatElectronsUL18 + slimmedElectronsWithUserData)
-_withTo106XAndUpdateAndUL18Scale_sequence.replace(bitmapVIDForEle, slimmedElectronsWithUserData + bitmapVIDForEle)
-run2_egamma_2018.toReplaceWith(electronSequence, _withTo106XAndUpdateAndUL18Scale_sequence)
