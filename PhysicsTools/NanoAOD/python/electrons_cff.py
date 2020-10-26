@@ -44,8 +44,8 @@ run2_miniAOD_80XLegacy.toModify( slimmedElectronsUpdated, computeMiniIso = True 
 
 # bypass the update to 106X in 106X to only pick up the IP sign fix
 run2_nanoAOD_106Xv1.toModify(slimmedElectronsUpdated, src = cms.InputTag("slimmedElectrons"))
-run2_run2_2017.toModify(slimmedElectronsUpdated, src = cms.InputTag("slimmedElectrons"))
-run2_run2_2018.toModify(slimmedElectronsUpdated, src = cms.InputTag("slimmedElectrons"))
+run2_egamma_2017.toModify(slimmedElectronsUpdated, src = cms.InputTag("slimmedElectrons"))
+run2_egamma_2018.toModify(slimmedElectronsUpdated, src = cms.InputTag("slimmedElectrons"))
 
 
 electron_id_modules_WorkingPoints_nanoAOD = cms.PSet(
