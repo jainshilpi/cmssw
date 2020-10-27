@@ -526,12 +526,13 @@ _updateTo106X_sequence =cms.Sequence(heepIDVarValueMaps + slimmedElectronsTo106X
 heepIDVarValueMaps.dataFormat = 2
 
 _withTo106XAndUpdate_sequence = cms.Sequence(_updateTo106X_sequence + slimmedElectronsUpdated + electronSequence.copy())
+_withULAndUpdate_sequence = cms.Sequence(slimmedElectronsUpdated + electronSequence.copy())
 
-_withTo106XAndUpdateAndUL17Scale_sequence = electronSequence.copy()
-_withTo106XAndUpdateAndUL17Scale_sequence.replace(slimmedElectronsWithUserData, slimmedElectronsUpdated + calibratedPatElectronsUL17 + bitmapVIDForEle + slimmedElectronsWithUserData)
+_withTo106XAndUpdateAndUL17Scale_sequence = _withULAndUpdate_sequence.copy()
+_withTo106XAndUpdateAndUL17Scale_sequence.replace(slimmedElectronsWithUserData, calibratedPatElectronsUL17 + bitmapVIDForEle + slimmedElectronsWithUserData)
 run2_egamma_2017.toReplaceWith(electronSequence, _withTo106XAndUpdateAndUL17Scale_sequence)
 
-_withTo106XAndUpdateAndUL18Scale_sequence = electronSequence.copy()
+_withTo106XAndUpdateAndUL18Scale_sequence = _withULAndUpdate_sequence.copy()
 _withTo106XAndUpdateAndUL18Scale_sequence.replace(slimmedElectronsWithUserData, slimmedElectronsUpdated + calibratedPatElectronsUL18 + bitmapVIDForEle + slimmedElectronsWithUserData)
 run2_egamma_2018.toReplaceWith(electronSequence, _withTo106XAndUpdateAndUL18Scale_sequence)
 
