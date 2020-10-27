@@ -46,7 +46,7 @@ run2_egamma_2017.toModify(slimmedElectronsUpdated, src = cms.InputTag("slimmedEl
 run2_egamma_2018.toModify(slimmedElectronsUpdated, src = cms.InputTag("slimmedElectrons"))
 run2_nanoAOD_106Xv1.toModify(slimmedElectronsUpdated, src = cms.InputTag("slimmedElectrons"))
 ####because run2_egamma_2017 and run2_egamma_2018 can modify things further, need the following line to resort back
-for modifier in run2_nanoAOD_94X2016,run2_nanoAOD_94XMiniAODv1,run2_nanoAOD_94XMiniAODv2,run2_nanoAOD_102Xv1:
+for modifier in run2_miniAOD_80XLegacy,run2_nanoAOD_94X2016,run2_nanoAOD_94XMiniAODv1,run2_nanoAOD_94XMiniAODv2,run2_nanoAOD_102Xv1:
     modifier.toModify(slimmedElectronsUpdated, src = cms.InputTag("slimmedElectronsTo106X"))
 
 electron_id_modules_WorkingPoints_nanoAOD = cms.PSet(
@@ -134,7 +134,7 @@ bitmapVIDForEleHEEP.WorkingPoints = cms.vstring(
 _bitmapVIDForEleHEEP_docstring = _get_bitmapVIDForEle_docstring(electron_id_modules_WorkingPoints_nanoAOD.modules,bitmapVIDForEleHEEP.WorkingPoints)
 
 
-for modifier in run2_miniAOD_80XLegacy,run2_nanoAOD_94XMiniAODv1,run2_nanoAOD_94XMiniAODv2,run2_nanoAOD_94X2016,run2_nanoAOD_102Xv1,run2_nanoAOD_106Xv1,run2_egamma_2017,run2_egamma_2018:
+for modifier in run2_egamma_2017,run2_egamma_2018,run2_miniAOD_80XLegacy,run2_nanoAOD_94XMiniAODv1,run2_nanoAOD_94XMiniAODv2,run2_nanoAOD_94X2016,run2_nanoAOD_102Xv1,run2_nanoAOD_106Xv1:
     modifier.toModify(bitmapVIDForEle, src = "slimmedElectronsUpdated")
     modifier.toModify(bitmapVIDForEleSpring15, src = "slimmedElectronsUpdated")
     modifier.toModify(bitmapVIDForEleSum16, src = "slimmedElectronsUpdated")
@@ -155,7 +155,7 @@ run2_miniAOD_80XLegacy.toModify(isoForEle, src = "slimmedElectronsUpdated",
 run2_nanoAOD_94X2016.toModify(isoForEle,
                                 EAFile_MiniIso = "RecoEgamma/ElectronIdentification/data/Spring15/effAreaElectrons_cone03_pfNeuHadronsAndPhotons_25ns.txt",
                                 EAFile_PFIso = "RecoEgamma/ElectronIdentification/data/Summer16/effAreaElectrons_cone03_pfNeuHadronsAndPhotons_80X.txt")
-for modifier in run2_nanoAOD_94XMiniAODv1,run2_nanoAOD_94XMiniAODv2,run2_nanoAOD_94X2016,run2_nanoAOD_102Xv1,run2_nanoAOD_106Xv1,run2_egamma_2017,run2_egamma_2018:
+for modifier in run2_egamma_2017,run2_egamma_2018, run2_nanoAOD_94XMiniAODv1,run2_nanoAOD_94XMiniAODv2,run2_nanoAOD_94X2016,run2_nanoAOD_102Xv1,run2_nanoAOD_106Xv1:
     modifier.toModify(isoForEle, src = "slimmedElectronsUpdated")
 
 ptRatioRelForEle = cms.EDProducer("ElectronJetVarProducer",
@@ -163,7 +163,7 @@ ptRatioRelForEle = cms.EDProducer("ElectronJetVarProducer",
     srcLep = cms.InputTag("slimmedElectrons"),
     srcVtx = cms.InputTag("offlineSlimmedPrimaryVertices"),
 )
-for modifier in run2_miniAOD_80XLegacy,run2_nanoAOD_94XMiniAODv1,run2_nanoAOD_94XMiniAODv2,run2_nanoAOD_94X2016,run2_nanoAOD_102Xv1,run2_nanoAOD_106Xv1,run2_egamma_2017,run2_egamma_2018:
+for modifier in run2_egamma_2017,run2_egamma_2018, run2_miniAOD_80XLegacy,run2_nanoAOD_94XMiniAODv1,run2_nanoAOD_94XMiniAODv2,run2_nanoAOD_94X2016,run2_nanoAOD_102Xv1,run2_nanoAOD_106Xv1:
     modifier.toModify(ptRatioRelForEle, srcLep = "slimmedElectronsUpdated")
 
 seedGainEle = cms.EDProducer("ElectronSeedGainProducer", src = cms.InputTag("slimmedElectrons"))
@@ -254,8 +254,20 @@ slimmedElectronsWithUserData = cms.EDProducer("PATElectronUserDataEmbedder",
         jetForLepJetVar = cms.InputTag("ptRatioRelForEle:jetForLepJetVar") # warning: Ptr is null if no match is found
     ),
 )
-for modifier in run2_miniAOD_80XLegacy,run2_nanoAOD_94XMiniAODv1,run2_nanoAOD_94XMiniAODv2,run2_nanoAOD_94X2016,run2_nanoAOD_102Xv1,run2_nanoAOD_106Xv1,run2_egamma_2017,run2_egamma_2018:
+for modifier in run2_egamma_2017,run2_egamma_2018, run2_miniAOD_80XLegacy,run2_nanoAOD_94XMiniAODv1,run2_nanoAOD_94XMiniAODv2,run2_nanoAOD_94X2016,run2_nanoAOD_102Xv1,run2_nanoAOD_106Xv1:
     modifier.toModify(slimmedElectronsWithUserData, src = "slimmedElectronsUpdated")
+
+run2_egamma_2017.toModify(slimmedElectronsWithUserData.userFloats,
+    ecalTrkEnergyErrPostCorrNew = cms.InputTag("calibratedPatElectronsUL17","ecalTrkEnergyErrPostCorr"),
+    ecalTrkEnergyPreCorrNew     = cms.InputTag("calibratedPatElectronsUL17","ecalTrkEnergyPreCorr"),
+    ecalTrkEnergyPostCorrNew    = cms.InputTag("calibratedPatElectronsUL17","ecalTrkEnergyPostCorr"),
+)
+
+run2_egamma_2018.toModify(slimmedElectronsWithUserData.userFloats,
+    ecalTrkEnergyErrPostCorrNew = cms.InputTag("calibratedPatElectronsUL18","ecalTrkEnergyErrPostCorr"),
+    ecalTrkEnergyPreCorrNew     = cms.InputTag("calibratedPatElectronsUL18","ecalTrkEnergyPreCorr"),
+    ecalTrkEnergyPostCorrNew    = cms.InputTag("calibratedPatElectronsUL18","ecalTrkEnergyPostCorr"),
+)
 
 run2_miniAOD_80XLegacy.toModify(slimmedElectronsWithUserData.userFloats,
     mvaSpring16GP = cms.InputTag("electronMVAValueMapProducer:ElectronMVAEstimatorRun2Spring16GeneralPurposeV1Values"),
@@ -276,17 +288,6 @@ run2_nanoAOD_94XMiniAODv1.toModify(slimmedElectronsWithUserData.userFloats,
 #the94X miniAOD V2 had a bug in the scale and smearing for electrons in the E/p comb
 #therefore we redo it but but we need use a new name for the userFloat as we cant override existing userfloats
 #for technical reasons
-run2_egamma_2017.toModify(slimmedElectronsWithUserData.userFloats,
-    ecalTrkEnergyErrPostCorrNew = cms.InputTag("calibratedPatElectronsUL17","ecalTrkEnergyErrPostCorr"),
-    ecalTrkEnergyPreCorrNew     = cms.InputTag("calibratedPatElectronsUL17","ecalTrkEnergyPreCorr"),
-    ecalTrkEnergyPostCorrNew    = cms.InputTag("calibratedPatElectronsUL17","ecalTrkEnergyPostCorr"),
-)
-
-run2_egamma_2018.toModify(slimmedElectronsWithUserData.userFloats,
-    ecalTrkEnergyErrPostCorrNew = cms.InputTag("calibratedPatElectronsUL18","ecalTrkEnergyErrPostCorr"),
-    ecalTrkEnergyPreCorrNew     = cms.InputTag("calibratedPatElectronsUL18","ecalTrkEnergyPreCorr"),
-    ecalTrkEnergyPostCorrNew    = cms.InputTag("calibratedPatElectronsUL18","ecalTrkEnergyPostCorr"),
-)
 
 run2_nanoAOD_94XMiniAODv2.toModify(slimmedElectronsWithUserData.userFloats,
     ecalTrkEnergyErrPostCorrNew = cms.InputTag("calibratedPatElectrons94X","ecalTrkEnergyErrPostCorr"),
@@ -435,6 +436,18 @@ electronTable = cms.EDProducer("SimpleCandidateFlatTableProducer",
         mvaTTH = ExtVar(cms.InputTag("electronMVATTH"),float, doc="TTH MVA lepton ID score",precision=14),
     ),
 )
+
+#the94X miniAOD V2 had a bug in the scale and smearing for electrons in the E/p comb
+#therefore we redo it but but we need use a new name for the userFloat as we cant override existing userfloats
+#for technical reasons
+for modifier in run2_egamma_2017,run2_egamma_2018, run2_nanoAOD_94XMiniAODv1,run2_nanoAOD_94XMiniAODv2,run2_miniAOD_80XLegacy,run2_nanoAOD_102Xv1:
+    modifier.toModify(electronTable.variables,            
+        pt = Var("pt*userFloat('ecalTrkEnergyPostCorrNew')/userFloat('ecalTrkEnergyPreCorrNew')", float, precision=-1, doc="p_{T}"),
+        energyErr = Var("userFloat('ecalTrkEnergyErrPostCorrNew')", float, precision=6, doc="energy error of the cluster-track combination"),
+        eCorr = Var("userFloat('ecalTrkEnergyPostCorrNew')/userFloat('ecalTrkEnergyPreCorrNew')", float, doc="ratio of the calibrated energy/miniaod energy"),
+        scEtOverPt = Var("(superCluster().energy()/(pt*userFloat('ecalTrkEnergyPostCorrNew')/userFloat('ecalTrkEnergyPreCorrNew')*cosh(superCluster().eta())))-1",float,doc="(supercluster transverse energy)/pt-1",precision=8),
+)
+
 # scale and smearing only when available
 for modifier in run2_nanoAOD_94X2016,:
     modifier.toModify(electronTable.variables,
@@ -443,17 +456,6 @@ for modifier in run2_nanoAOD_94X2016,:
         eCorr = Var("userFloat('ecalTrkEnergyPostCorr')/userFloat('ecalTrkEnergyPreCorr')", float, doc="ratio of the calibrated energy/miniaod energy"),
         scEtOverPt = Var("(superCluster().energy()/(pt*userFloat('ecalTrkEnergyPostCorr')/userFloat('ecalTrkEnergyPreCorr')*cosh(superCluster().eta())))-1",float,doc="(supercluster transverse energy)/pt-1",precision=8),
     )
-
-#the94X miniAOD V2 had a bug in the scale and smearing for electrons in the E/p comb
-#therefore we redo it but but we need use a new name for the userFloat as we cant override existing userfloats
-#for technical reasons
-for modifier in run2_nanoAOD_94XMiniAODv1,run2_nanoAOD_94XMiniAODv2,run2_miniAOD_80XLegacy,run2_nanoAOD_102Xv1,run2_egamma_2017,run2_egamma_2018:
-    modifier.toModify(electronTable.variables,            
-        pt = Var("pt*userFloat('ecalTrkEnergyPostCorrNew')/userFloat('ecalTrkEnergyPreCorrNew')", float, precision=-1, doc="p_{T}"),
-        energyErr = Var("userFloat('ecalTrkEnergyErrPostCorrNew')", float, precision=6, doc="energy error of the cluster-track combination"),
-        eCorr = Var("userFloat('ecalTrkEnergyPostCorrNew')/userFloat('ecalTrkEnergyPreCorrNew')", float, doc="ratio of the calibrated energy/miniaod energy"),
-        scEtOverPt = Var("(superCluster().energy()/(pt*userFloat('ecalTrkEnergyPostCorrNew')/userFloat('ecalTrkEnergyPreCorrNew')*cosh(superCluster().eta())))-1",float,doc="(supercluster transverse energy)/pt-1",precision=8),
-)
 
 run2_nanoAOD_94X2016.toModify(electronTable.variables,
     cutBased_Sum16 = Var("userInt('cutbasedID_Sum16_veto')+userInt('cutbasedID_Sum16_loose')+userInt('cutbasedID_Sum16_medium')+userInt('cutbasedID_Sum16_tight')",int,doc="cut-based Summer16 ID (0:fail, 1:veto, 2:loose, 3:medium, 4:tight)"),
@@ -525,12 +527,12 @@ heepIDVarValueMaps.dataFormat = 2
 
 _withTo106XAndUpdate_sequence = cms.Sequence(_updateTo106X_sequence + slimmedElectronsUpdated + electronSequence.copy())
 
-_withTo106XAndUpdateAndUL17Scale_sequence = _withTo106XAndUpdate_sequence.copy()
-_withTo106XAndUpdateAndUL17Scale_sequence.replace(slimmedElectronsWithUserData, calibratedPatElectronsUL17 + bitmapVIDForEle + slimmedElectronsWithUserData)
+_withTo106XAndUpdateAndUL17Scale_sequence = electronSequence.copy()
+_withTo106XAndUpdateAndUL17Scale_sequence.replace(slimmedElectronsWithUserData, slimmedElectronsUpdated + calibratedPatElectronsUL17 + bitmapVIDForEle + slimmedElectronsWithUserData)
 run2_egamma_2017.toReplaceWith(electronSequence, _withTo106XAndUpdateAndUL17Scale_sequence)
 
-_withTo106XAndUpdateAndUL18Scale_sequence = _withTo106XAndUpdate_sequence.copy()
-_withTo106XAndUpdateAndUL18Scale_sequence.replace(slimmedElectronsWithUserData, calibratedPatElectronsUL18 + bitmapVIDForEle + slimmedElectronsWithUserData)
+_withTo106XAndUpdateAndUL18Scale_sequence = electronSequence.copy()
+_withTo106XAndUpdateAndUL18Scale_sequence.replace(slimmedElectronsWithUserData, slimmedElectronsUpdated + calibratedPatElectronsUL18 + bitmapVIDForEle + slimmedElectronsWithUserData)
 run2_egamma_2018.toReplaceWith(electronSequence, _withTo106XAndUpdateAndUL18Scale_sequence)
 
 _withTo106XAndUpdateAnd80XLegacyScale_sequence = _withTo106XAndUpdate_sequence.copy()
