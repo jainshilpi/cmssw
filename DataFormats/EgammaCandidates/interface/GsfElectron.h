@@ -16,6 +16,9 @@
 #include "DataFormats/GeometryVector/interface/GlobalPoint.h"
 #include "DataFormats/GeometryVector/interface/GlobalVector.h"
 #include "FWCore/MessageLogger/interface/MessageLogger.h"
+
+#include "DataFormats/HcalDetId/interface/HcalDetId.h" ///SJ
+
 #include <vector>
 #include <limits>
 
@@ -366,9 +369,17 @@ namespace reco {
       float hcalDepth1OverEcal;  // hcal over ecal seed cluster energy using 1st hcal depth (using hcal towers within a cone)
       float hcalDepth2OverEcal;  // hcal over ecal seed cluster energy using 2nd hcal depth (using hcal towers within a cone)
       std::vector<CaloTowerDetId> hcalTowersBehindClusters;  //
+      std::vector<HcalDetId> hcalRecHitsBehindClusters;  /// SJ
+      //std::vector<HcalDetId> hcalTowersBehindClusters;  /// SJ
+      //double trythis;
       float hcalDepth1OverEcalBc;  // hcal over ecal seed cluster energy using 1st hcal depth (using hcal towers behind clusters)
       float hcalDepth2OverEcalBc;  // hcal over ecal seed cluster energy using 2nd hcal depth (using hcal towers behind clusters)
       bool invalidHcal;  // set to true if the hcal energy estimate is not valid (e.g. the corresponding tower was off or masked)
+
+      ///SJ hcal depth info
+      float hcalDepth[7]; ////make 7 configurable???
+      float hcalOverEcal; ////SJ --> to calculate teh total sum in all teh depths --> for tower based had been fine. for rechit based in the new adaptation ---> NO
+
       float sigmaIetaIphi;
       float eMax;
       float e2nd;
@@ -414,12 +425,43 @@ namespace reco {
     float e2x5Max() const { return showerShape_.e2x5Max; }
     float e5x5() const { return showerShape_.e5x5; }
     float r9() const { return showerShape_.r9; }
+
+    ///SJ ---> these two should be removed
     float hcalDepth1OverEcal() const { return showerShape_.hcalDepth1OverEcal; }
     float hcalDepth2OverEcal() const { return showerShape_.hcalDepth2OverEcal; }
-    float hcalOverEcal() const { return hcalDepth1OverEcal() + hcalDepth2OverEcal(); }
-    const std::vector<CaloTowerDetId> &hcalTowersBehindClusters() const {
+    ////
+    
+    ///SJ
+    //float hcalOverEcal() const { return hcalDepth1OverEcal() + hcalDepth2OverEcal(); } ///SJ --> inconsistency since it sums up only 2 depths ---> fine for tower based but not for rechit based since I changed the code to include more depths
+    ///SJ
+    float hcalOverEcal() const { return showerShape_.hcalOverEcal; } ///SJ --> tower based returns hcalDepth1OverEcal() + hcalDepth2OverEcal() which is again sum over all the depths because of the way hcalDepth1OverEcal is calculated but rechit based returns sum over all the depths
+
+
+    float hcalOverEcalInDepth(int idepth) const { return showerShape_.hcalDepth[idepth]; }
+
+    ///SJ
+    /*const std::vector<CaloTowerDetId> &hcalTowersBehindClusters() const {
       return showerShape_.hcalTowersBehindClusters;
     }
+    */
+
+    /*
+    const std::vector<HcalDetId> &hcalTowersBehindClusters() const { ///SJ
+      return showerShape_.hcalTowersBehindClusters;
+    }
+    */
+
+    const std::vector<CaloTowerDetId> &hcalTowersBehindClusters() const { ///SJ
+
+      return showerShape_.hcalTowersBehindClusters;
+      
+    }
+    
+    const std::vector<HcalDetId> &hcalRecHitsBehindClusters() const { ///SJ
+      
+      return showerShape_.hcalRecHitsBehindClusters;
+    }
+    
     float hcalDepth1OverEcalBc() const { return showerShape_.hcalDepth1OverEcalBc; }
     float hcalDepth2OverEcalBc() const { return showerShape_.hcalDepth2OverEcalBc; }
     float hcalOverEcalBc() const { return hcalDepth1OverEcalBc() + hcalDepth2OverEcalBc(); }

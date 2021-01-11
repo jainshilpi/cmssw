@@ -59,6 +59,9 @@ void GsfElectronBaseProducer::fillDescriptions(edm::ConfigurationDescriptions& d
   desc.add<edm::InputTag>("egmPFCandidatesTag", edm::InputTag("particleFlowEGamma"));
   desc.add<bool>("checkHcalStatus", true);
 
+  desc.add<edm::InputTag>("hcalRecHits", edm::InputTag("hbhereco")); ///SJ
+
+
   // steering
   desc.add<bool>("gedElectronMode", true);
   desc.add<bool>("useCombinationRegression", true);
@@ -143,6 +146,17 @@ void GsfElectronBaseProducer::fillDescriptions(edm::ConfigurationDescriptions& d
     psd0.add<double>("maxTIP", 999999999.0);
     psd0.add<double>("minMVA", -0.4);
     psd0.add<double>("minMvaByPassForIsolated", -0.4);
+
+    ////SJ
+    ////SJ
+    psd0.add<double>("HBThreshold1", 0.1);
+    psd0.add<double>("HBThreshold2", 0.2);
+    psd0.add<double>("HBThreshold", 0.3);
+    
+    psd0.add<double>("HEThreshold1", 0.1);
+    psd0.add<double>("HEThreshold", 0.2);
+    ////SJ
+
     // preselection parameters (ecal driven electrons)
     desc.add<edm::ParameterSetDescription>("preselection", psd0);
     // preselection parameters (tracker driven only electrons)
@@ -299,16 +313,47 @@ GsfElectronBaseProducer::GsfElectronBaseProducer(const edm::ParameterSet& cfg, c
   hcalCfg_.hOverEConeSize = psetPreselection.getParameter<double>("hOverEConeSize");
   if (hcalCfg_.hOverEConeSize > 0) {
     hcalCfg_.useTowers = true;
+    //hcalCfg_.useTowers = false;
     hcalCfg_.checkHcalStatus = cfg.getParameter<bool>("checkHcalStatus");
     hcalCfg_.hcalTowers = consumes<CaloTowerCollection>(cfg.getParameter<edm::InputTag>("hcalTowers"));
+
+    hcalCfg_.hcalRecHits = consumes<HBHERecHitCollection>(cfg.getParameter<edm::InputTag>("hcalRecHits"));///SJ
+
     hcalCfg_.hOverEPtMin = psetPreselection.getParameter<double>("hOverEPtMin");
+
+    ////SJ
+    ////EB
+    hcalCfg_.HBThreshold1 = psetPreselection.getParameter<double>("HBThreshold1");
+    hcalCfg_.HBThreshold2 = psetPreselection.getParameter<double>("HBThreshold2");
+    hcalCfg_.HBThreshold = psetPreselection.getParameter<double>("HBThreshold");
+    ///EE
+    hcalCfg_.HEThreshold1 = psetPreselection.getParameter<double>("HEThreshold1");
+    hcalCfg_.HEThreshold = psetPreselection.getParameter<double>("HEThreshold");
+    ////SJ
+      
+
   }
   auto const& psetPreselectionPflow = cfg.getParameter<edm::ParameterSet>("preselectionPflow");
   hcalCfgPflow_.hOverEConeSize = psetPreselectionPflow.getParameter<double>("hOverEConeSize");
   if (hcalCfgPflow_.hOverEConeSize > 0) {
     hcalCfgPflow_.useTowers = true;
+    //hcalCfgPflow_.useTowers = false;
     hcalCfgPflow_.checkHcalStatus = cfg.getParameter<bool>("checkHcalStatus");
     hcalCfgPflow_.hcalTowers = consumes<CaloTowerCollection>(cfg.getParameter<edm::InputTag>("hcalTowers"));
+
+
+    ////SJ
+    ////EB
+    hcalCfgPflow_.HBThreshold1 = psetPreselection.getParameter<double>("HBThreshold1");
+    hcalCfgPflow_.HBThreshold2 = psetPreselection.getParameter<double>("HBThreshold2");
+    hcalCfgPflow_.HBThreshold = psetPreselection.getParameter<double>("HBThreshold");
+    ///EEo
+    hcalCfgPflow_.HEThreshold1 = psetPreselection.getParameter<double>("HEThreshold1");
+    hcalCfgPflow_.HEThreshold = psetPreselection.getParameter<double>("HEThreshold");
+    ////SJ
+
+    hcalCfgPflow_.hcalRecHits = consumes<HBHERecHitCollection>(cfg.getParameter<edm::InputTag>("hcalRecHits")); ///SJ
+
     hcalCfgPflow_.hOverEPtMin = psetPreselectionPflow.getParameter<double>("hOverEPtMin");
   }
 

@@ -332,11 +332,61 @@ reco::GsfElectron::ShowerShape GsfElectronAlgo::calculateShowerShape(const reco:
 
   showerShape.hcalDepth1OverEcal = hcalHelper.hcalESumDepth1(*theClus) / theClus->energy();
   showerShape.hcalDepth2OverEcal = hcalHelper.hcalESumDepth2(*theClus) / theClus->energy();
+  
+  ///SJ
+  if(hcalHelper.useTowers()){
+    
+    //showerShape.hcalTowersBehindClusters = hcalHelper.hcalTowersBehindClusters<CaloTowerDetId>(*theClus);
+    showerShape.hcalTowersBehindClusters = hcalHelper.hcalTowersBehindClusters(*theClus);
+    
+    //hcalHelper.calHcalESumTowerDepth1BehindClusters(showerShape.hcalTowersBehindClusters);
+    //hcalHelper.calHcalESumTowerDepth2BehindClusters(showerShape.hcalTowersBehindClusters);
+    
+    showerShape.hcalDepth1OverEcalBc =
+      hcalHelper.hcalESumDepth1BehindClusters(showerShape.hcalTowersBehindClusters) / scale;
+    showerShape.hcalDepth2OverEcalBc =
+      hcalHelper.hcalESumDepth2BehindClusters(showerShape.hcalTowersBehindClusters) / scale;
+
+    showerShape.hcalOverEcal = ( hcalHelper.hcalESumDepth2(*theClus) + hcalHelper.hcalESumDepth2(*theClus) )/ theClus->energy();
+
+    std::cout<<"SJ!!!!H1/E : H2/E "<<showerShape.hcalDepth1OverEcalBc<<" "<<showerShape.hcalDepth2OverEcalBc<<std::endl;
+    
+
+  }else
+    {
+      
+      //showerShape.hcalRecHitsBehindClusters = hcalHelper.hcalTowersBehindClusters<HcalDetId>(*theClus);
+      showerShape.hcalRecHitsBehindClusters = hcalHelper.hcalRecHitsBehindClusters(*theClus);
+      
+      //hcalHelper.calHcalESumRecHitDepth1BehindClusters(showerShape.hcalRecHitsBehindClusters);
+      //hcalHelper.calHcalESumRecHitDepth2BehindClusters(showerShape.hcalRecHitsBehindClusters);
+      
+      showerShape.hcalDepth1OverEcalBc =
+	hcalHelper.hcalESumRecHitDepth1BehindClusters(showerShape.hcalRecHitsBehindClusters) / scale;
+      showerShape.hcalDepth2OverEcalBc =
+	hcalHelper.hcalESumRecHitDepth2BehindClusters(showerShape.hcalRecHitsBehindClusters) / scale;
+      
+      
+      ////SJ
+      float sum = 0;
+      ////fill the depth info - available only for rechits
+      for(int idep=0; idep<7; idep++){ ///make 7 configurable
+	showerShape.hcalDepth[idep] = hcalHelper.hcalEDepth(*theClus, idep+1)/theClus->energy(); ///depth num starts from 1 and can go upto 7 for run 3
+	//sum += hcalHelper.hcalEDepth(*theClus, idep)/theClus->energy();
+      }
+
+      //showerShape.hcalOverEcal = sum;
+      showerShape.hcalOverEcal = hcalHelper.hcalEDepth(*theClus, 0)/theClus->energy();
+    }
+
+  /*
   showerShape.hcalTowersBehindClusters = hcalHelper.hcalTowersBehindClusters(*theClus);
   showerShape.hcalDepth1OverEcalBc =
       hcalHelper.hcalESumDepth1BehindClusters(showerShape.hcalTowersBehindClusters) / scale;
   showerShape.hcalDepth2OverEcalBc =
       hcalHelper.hcalESumDepth2BehindClusters(showerShape.hcalTowersBehindClusters) / scale;
+  */
+  
   showerShape.invalidHcal = (showerShape.hcalDepth1OverEcalBc == 0 && showerShape.hcalDepth2OverEcalBc == 0 &&
                              !hcalHelper.hasActiveHcal(*theClus));
 
@@ -997,20 +1047,30 @@ void GsfElectronAlgo::createElectron(reco::GsfElectronCollection& electrons,
   dr04.tkSumPtHEEP = tkIsolHEEP04Calc_.calIsolPt(*ele.gsfTrack(), *eventData.currentCtfTracks);
 
   if (!EcalTools::isHGCalDet((DetId::Detector)region)) {
+
+    ////SJ
+    /*
     dr03.hcalDepth1TowerSumEt = eventData.hadDepth1Isolation03.getTowerEtSum(&ele);
     dr03.hcalDepth2TowerSumEt = eventData.hadDepth2Isolation03.getTowerEtSum(&ele);
     dr03.hcalDepth1TowerSumEtBc =
         eventData.hadDepth1Isolation03Bc.getTowerEtSum(&ele, &(showerShape.hcalTowersBehindClusters));
     dr03.hcalDepth2TowerSumEtBc =
         eventData.hadDepth2Isolation03Bc.getTowerEtSum(&ele, &(showerShape.hcalTowersBehindClusters));
+    */
+
     dr03.ecalRecHitSumEt = eventData.ecalBarrelIsol03.getEtSum(&ele);
     dr03.ecalRecHitSumEt += eventData.ecalEndcapIsol03.getEtSum(&ele);
+
+    ///SJ
+    /*
     dr04.hcalDepth1TowerSumEt = eventData.hadDepth1Isolation04.getTowerEtSum(&ele);
     dr04.hcalDepth2TowerSumEt = eventData.hadDepth2Isolation04.getTowerEtSum(&ele);
     dr04.hcalDepth1TowerSumEtBc =
         eventData.hadDepth1Isolation04Bc.getTowerEtSum(&ele, &(showerShape.hcalTowersBehindClusters));
     dr04.hcalDepth2TowerSumEtBc =
         eventData.hadDepth2Isolation04Bc.getTowerEtSum(&ele, &(showerShape.hcalTowersBehindClusters));
+    */
+
     dr04.ecalRecHitSumEt = eventData.ecalBarrelIsol04.getEtSum(&ele);
     dr04.ecalRecHitSumEt += eventData.ecalEndcapIsol04.getEtSum(&ele);
   }

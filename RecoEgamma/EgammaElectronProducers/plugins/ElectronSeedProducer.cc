@@ -93,8 +93,21 @@ ElectronSeedProducer::ElectronSeedProducer(const edm::ParameterSet& iConfig) {
     hcalCfg.hOverEConeSize = conf.getParameter<double>("hOverEConeSize");
     if (hcalCfg.hOverEConeSize > 0) {
       hcalCfg.useTowers = true;
+      //hcalCfg.useTowers = false;
       hcalCfg.hcalTowers = consumes<CaloTowerCollection>(conf.getParameter<edm::InputTag>("hcalTowers"));
       hcalCfg.hOverEPtMin = conf.getParameter<double>("hOverEPtMin");
+      hcalCfg.hcalRecHits = consumes<HBHERecHitCollection>(conf.getParameter<edm::InputTag>("hcalRecHits")); ///SJ
+
+      ////SJ for rechit thresholds
+      ////EB
+      hcalCfg.HBThreshold1 = conf.getParameter<double>("HBThreshold1");
+      hcalCfg.HBThreshold2 = conf.getParameter<double>("HBThreshold2");
+      hcalCfg.HBThreshold = conf.getParameter<double>("HBThreshold");
+      ///EE
+      hcalCfg.HEThreshold1 = conf.getParameter<double>("HEThreshold1");
+      hcalCfg.HEThreshold = conf.getParameter<double>("HEThreshold");
+      ////SJ
+      
     }
     hcalHelper_ = std::make_unique<ElectronHcalHelper>(hcalCfg);
 
@@ -286,6 +299,18 @@ void ElectronSeedProducer::fillDescriptions(edm::ConfigurationDescriptions& desc
     psd0.add<edm::InputTag>("hcalTowers", {"towerMaker"});
     psd0.add<double>("hOverEPtMin", 0.0);
 
+    psd0.add<edm::InputTag>("hcalRecHits", {"hbhereco"}); ///SJ
+
+
+    ////SJ
+    psd0.add<double>("HBThreshold1", 0.1);
+    psd0.add<double>("HBThreshold2", 0.2);
+    psd0.add<double>("HBThreshold", 0.3);
+
+    psd0.add<double>("HEThreshold1", 0.1);
+    psd0.add<double>("HEThreshold", 0.2);
+    ////SJ
+    
     // H/E equivalent for HGCal
     psd0.add<bool>("allowHGCal", false);
     edm::ParameterSetDescription psd4;
