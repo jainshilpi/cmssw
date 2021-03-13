@@ -337,7 +337,7 @@ run2_miniAOD_80XLegacy.toReplaceWith(photonSequence, _with80XScale_sequence)
 
 _with94XScale_sequence = _withUpdatePho_sequence.copy()
 _with94XScale_sequence.replace(slimmedPhotonsWithUserData, calibratedPatPhotonsNano  + slimmedPhotonsWithUserData)
-run2_nanoAOD_94X2016.toReplaceWith(photonSequence, _with80XScale_sequence)
+run2_nanoAOD_94X2016.toReplaceWith(photonSequence, _with94XScale_sequence)
 
 _with94Xv1Scale_sequence = _withUpdatePho_sequence.copy()
 _with94Xv1Scale_sequence.replace(slimmedPhotonsWithUserData, calibratedPatPhotonsNano + slimmedPhotonsWithUserData)
